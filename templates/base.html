@@ -1,0 +1,64 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="/static/core/style.css"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>{% block title %}Вход{% endblock %}</title>
+</head>
+<body style="background-color: rgb(255, 246, 235)">        
+
+
+{% block content %}
+
+
+    {% if message %}
+        <script>
+            alert('{{ message }}')
+        </script>
+    {% endif %}
+
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+
+    <div class="container-fluid h-100">
+        <div class="row align-items-center h-100">
+            <div class="col-sm-12">
+                <div class="row justify-content-center">
+                    <div class="col-3 text-center" style="background-color: white; box-shadow: 0 0 10px; position: fixed; top: 25%">
+                        <form>
+                            <h2 class="signinText" style="text-align: center;">Вход</h2>
+                            <div class="form-group" style="text-align: left;">
+                              <label for="login">Логин:</label>
+                              {{ form.login }}
+                            </div>
+                            <div class="form-group" style="text-align: left;">
+                              <label class='' for="exampleInputPassword1" style="text-align: left;">Пароль:</label>
+                              {{ form.password }}
+                            </div>
+                            <div class="button" style="text-align:center">
+                                <button type="submit" class="mb-3 btn btn-primary">Войти</button>
+                            </div>
+                            <div class="a mb-2" style="text-align: center;">
+                                <a class="" href="{% url 'register' %}">Регистрация</a>
+                            </div>
+                          </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}
+
+</body>
+</html>
