@@ -1,0 +1,157 @@
+﻿{% extends 'core/main.html' %}
+
+
+{% block title %}База данных пациентов{% endblock %}
+
+
+
+{% block content %}
+
+
+<form action="{% url 'job_with_db' %}" method="POST">
+
+    {% csrf_token %}
+
+    <div class="col-md-4 offset-md-2" style="position: absolute; top: 15%;">
+        <div class="row justify-content-center">
+            <button type="submit" class="btn fa fa-2x fa-user-plus" name="_add" style="box-shadow: none"></button>
+            <button type="submit" class="btn fa fa-2x fa-user-times" name="_delete" style="box-shadow: none"></button>
+            <button type="submit" class="btn fa fa-2x fa-save" name="_change" style="box-shadow: none"></button>
+        </div>
+    </div>
+
+
+
+    <!--<div class="col-md-4 offset-md-2" style="top: 15%;">
+        <div class="row justify-content-center">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn fa fa-2x fa-user-plus" style="box-shadow: none"></button>
+                <button type="button" class="btn fa fa-2x fa-user-times" style="box-shadow: none"></button>
+                <button type="button" class="btn fa fa-2x fa-save" style="box-shadow: none"></button>
+            </div>
+        </div>
+    </div>-->
+
+
+
+    <div class="col-sm-12" style="position: absolute; top: 25%">
+        <div class="row justify-content-center">
+            <div class="col-7 text-center" style="background-color: white; box-shadow: 0 0 10px;">
+                <div class="mt-3 form-group row">
+                    <label for="" class="col-sm-2 col-form-label" style="text-align: left;">Номер карты</label>
+                    <div class="col-sm-10">
+                        {{ form.number_card }}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="" class="col-sm-2 col-form-label" style="text-align: left;">ФИО</label>
+                    <div class="col-sm-10">
+                        {{ form.FIO }}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="" class="col-sm-2 col-form-label" style="text-align: left">Дата рождения</label>
+                    <div class="col-sm-10">
+                        {{ form.date_birth }}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="" class="col-sm-2 col-form-label" style="text-align: left">Пол</label>
+                    <div class="col-sm-10">
+                        {{ form.sex }}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="" class="col-sm-2 col-form-label" style="text-align: left">Национальность</label>
+                    <div class="col-sm-10">
+                        {{ form.nationality }}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="" class="col-sm-2 col-form-label" style="text-align: left">Образование</label>
+                    <div class="col-sm-10">
+                        {{ form.education }}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="" class="col-sm-2 col-form-label" style="text-align: left">Адрес</label>
+                    <div class="col-sm-10">
+                        {{ form.address }}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="" class="col-sm-2 col-form-label" style="text-align: left">Телефон</label>
+                    <div class="col-sm-10">
+                        {{ form.phone }}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="" class="col-sm-2 col-form-label" style="text-align: left">Место работы</label>
+                    <div class="col-sm-10">
+                        {{ form.job }}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="" class="col-sm-2 col-form-label" style="text-align: left">Должность</label>
+                    <div class="col-sm-10">
+                        {{ form.position }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+
+
+<div class="mb-4 col-sm-12" style="position: absolute; top: 105%">
+    <div class="row justify-content-center">
+        <div class="col-11 text-center" style="background-color: white; box-shadow: 0 0 10px;">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Номер карты</th>
+                        <th scope="col">ФИО</th>
+                        <th scope="col">Дата рождения</th>
+                        <th scope="col">Пол</th>
+                        <th scope="col">Национальность</th>
+                        <th scope="col">Образование</th>
+                        <th scope="col">Адрес</th>
+                        <th scope="col">Телефон</th>
+                        <th scope="col">Место работы</th>
+                        <th scope="col">Должность</th>
+
+                    </tr>
+                </thead>
+
+
+                <tbody>
+
+                    {% for patient in patients %}
+
+                    <tr>
+                        <td>{{ patient.number_card }}</td>
+                        <td>{{ patient.FIO }}</td>
+                        <td>{{ patient.date_birth }}</td>
+                        <td>{{ patient.sex }}</td>
+                        <td>{{ patient.nationality }}</td>
+                        <td>{{ patient.education }}</td>
+                        <td>{{ patient.address }}</td>
+                        <td>{{ patient.phone }}</td>
+                        <td>{{ patient.job }}</td>
+                        <td>{{ patient.position }}</td>
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+
+            </table>
+        </div>
+    </div>
+</div>
+
+
+    {% endblock %}
