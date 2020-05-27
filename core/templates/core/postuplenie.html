@@ -1,7 +1,7 @@
-{% extends 'core/base_core.html' %}
+{% extends 'core/main.html' %}
 
 
-{% block title %}Главная{% endblock %}
+{% block title %}Данные при поступлении{% endblock %}
 
 
 {% block navbar %}
@@ -42,20 +42,6 @@
 
 {% block content %}
 
-<div class="col-md-4">
-    <div class="row justify-content-center">
-        <div class="col-3 text-center" style="background-color: white; box-shadow: 0 0 10px; position: fixed; top: 25%">
-            <p class="mt-3" style="font-size: 1.1em">
-                Справочник
-            </p>
-            <div class="btn-group-vertical">
-                <button type="button" class="mt-1 mb-3 btn btn-danger">Диагнозы</button>
-                <button type="button" class="mb-4 btn btn-danger">Вопросы</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="col-md-4 offset-md-4">
     <div class="row justify-content-center">
         <div class="col-3 text-center" style="background-color: white; box-shadow: 0 0 10px; position: fixed; top: 25%">
@@ -63,25 +49,9 @@
                 Работа с пациентом
             </p>
             <div class="btn-group-vertical">
-                <a type="button" class="mt-1 mb-3 btn btn-danger" href="{% url 'db_patients' login=login %}">База данных пациентов</a>
-                <button type="button" class="mb-3 btn btn-danger">Эпикризы</button>
-                <a type="button" class="mb-3 btn btn-danger" href="{% url 'postuplenie' login=login %}">Данные при поступлении</a>
-                <button type="button" class="mb-4 btn btn-danger">Диагноз</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="col-md-4 offset-md-8">
-    <div class="row justify-content-center">
-        <div class="col-3 text-center" style="background-color: white; box-shadow: 0 0 10px; position: fixed; top: 25%">
-            <p class="mt-3" style="font-size: 1.1em">
-                Настройка правил
-            </p>
-            <div class="btn-group-vertical">
-                <button type="button" class="mt-1 mb-3 btn btn-danger">Диагнозы</button>
-                <button type="button" class="mb-3 btn btn-danger">Симптомы</button>
-                <button type="button" class="mb-4 btn btn-danger">Правила</button>
+                <button type="button" class="mb-3 btn btn-danger">Добавить новый опрос</button>
+                <button type="button" class="mb-3 btn btn-danger">Посмотреть данные</button>
+                <button type="button" class="mb-4 btn btn-danger">Посмотреть данные анкет</button>
             </div>
         </div>
     </div>

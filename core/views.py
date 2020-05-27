@@ -161,6 +161,7 @@ def db_patients(request, login):
     #else:
     db_patients_form = DbPatientsForm()
 
+
     patients = Patient.objects.all()
 
     context = {
@@ -170,7 +171,6 @@ def db_patients(request, login):
     }
     template = "core/db_patients.html"
     return render(request, template, context)
-
 
 
 
@@ -312,3 +312,24 @@ def change_patient(request):
         patient.save()
 
     return redirect('/doctor-' + g_login + '/db-patients/')
+
+
+
+# Страница "данные при поступлении"
+def postuplenie(request, login):
+
+    global g_login
+    g_login = login
+
+    db_patients_form = DbPatientsForm()
+
+
+    patients = Patient.objects.all()
+
+    context = {
+        'login': login,
+        'form': db_patients_form,
+        'patients': patients,
+    }
+    template = "core/postuplenie.html"
+    return render(request, template, context)

@@ -10,5 +10,7 @@ urlpatterns = [
     path('main/', views.main, name="main"),
     path('doctor-<login>/db-patients/', views.db_patients, name="db_patients"),
     path('job-with-db/', views.job_with_db, name="job_with_db"),
+    path('doctor-<login>/postuplenie/', views.postuplenie, name="postuplenie"),
+
 
 ]
