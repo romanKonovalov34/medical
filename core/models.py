@@ -9,7 +9,7 @@ from django.db import models
 class User(models.Model):
     login = models.CharField(max_length=200, verbose_name='ФИО')
     password = models.CharField(max_length = 50, verbose_name='Пароль')
-    isAdmin = models.BooleanField(verbose_name='Я администратор')
+    isAdmin = models.BooleanField(verbose_name='Я администратор') # Не нужно, но пусть будет чтобы ошибок не было.
 
 
     def __str__(self):
@@ -19,28 +19,6 @@ class User(models.Model):
     class Meta():
         verbose_name = 'пользователя'
         verbose_name_plural='пользователи'
-
-
-
-
-
-
-#class Doctor(models.Model):
-#    name = models.CharField(max_length=200, verbose_name='ФИО')
-#    age = models.CharField(max_length=3, verbose_name='Возраст')
-#    login = models.CharField(max_length = 50, verbose_name='Логин')
-#    password = models.CharField(max_length = 50, verbose_name='Пароль')
-
-
-#    def __str__(self):
-#        return self.name
-
-
-#    class Meta():
-#        verbose_name = 'Доктора'
-#        verbose_name_plural='Доктора'
-
-
 
 
 
@@ -65,3 +43,72 @@ class Patient(models.Model):
     class Meta():
         verbose_name = 'пациента'
         verbose_name_plural='пациенты'
+
+# Сущность анкета пациента
+class Form(models.Model):
+    date = models.CharField(max_length=100, verbose_name="Дата анкеты")
+    patient = models.ForeignKey(Patient, on_delete = models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
+
+    class Meta():
+        verbose_name = 'анкета'
+        verbose_name_plural='анкеты'
+
+# Вопросы
+class Question(models.Model):
+    question = models.CharField(max_length=100, verbose_name="Дата анкеты")
+
+    def __str__(self):
+        return self.name
+
+
+    class Meta():
+        verbose_name = 'вопрос'
+        verbose_name_plural='вопросы'
+
+# ответы
+class Answer(models.Model):
+    date = models.DateField()
+    note = models.TextField()
+    form = models.ForeignKey(Form, on_delete = models.CASCADE)
+    question = models.ForeignKey(Question, on_delete = models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
+
+    class Meta():
+        verbose_name = 'ответ'
+        verbose_name_plural='ответы'
+
+# Диагнозы
+class Diagnos(models.Model):
+    note = models.TextField()
+    form = models.ForeignKey(Form, on_delete = models.CASCADE)
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    disease = models.ForeignKey(Disease, on_delete = models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
+
+    class Meta():
+        verbose_name = 'диагноз'
+        verbose_name_plural='диагнозы'
+
+# Болезни
+class Disease(models.Model):
+    name = models.CharField(max_length=100, verbose_name="Название")
+    note = models.TextField() #описание
+
+    def __str__(self):
+        return self.name
+
+
+    class Meta():
+        verbose_name = 'болезнь'
+        verbose_name_plural='болезни'
+
