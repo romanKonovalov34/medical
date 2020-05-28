@@ -5,6 +5,7 @@ from django.core.exceptions import ValidationError
 from .models import User
 #from .models import Doctor
 from .models import Patient
+from .models import Ancket
 
 
 
@@ -53,3 +54,21 @@ class DbPatientsForm(forms.Form):
     job.widget.attrs.update({'class': 'form-control'})
     position.widget.attrs.update({'class': 'form-control'})
 
+# анкета
+class DBFormsForm(forms.Form):
+    number_card_opros = forms.CharField(required='', label="Номер карты")
+    number_card_answer  = forms.CharField(required='', label="Номер карты")
+    number_ancket = forms.CharField(required='', label="Номер анкеты")
+    question = forms.CharField(required='', label="Номер анкеты")
+    answer = forms.CharField(required='', label="Номер анкеты")
+    conviction = forms.CharField(required='', label="Номер анкеты")
+
+
+    number_card_opros.widget.attrs.update({'class': 'form-control'})
+    number_card_answer.widget.attrs.update({'class': 'form-control'})
+    number_ancket.widget.attrs.update({'class': 'form-control'})
+    question.widget.attrs.update({'class': 'form-control'})
+    answer.widget.attrs.update({'class': 'form-control'})
+    conviction.widget.attrs.update({'class': 'form-control'})
+
+    

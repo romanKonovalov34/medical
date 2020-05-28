@@ -13,11 +13,12 @@ from django.contrib import messages
 from .models import User
 #from .models import Doctor
 from .models import Patient
+from .models import Ancket
 
 from .forms import SigninForm
 from .forms import RegisterForm
 from .forms import DbPatientsForm
-
+from .forms import DBFormsForm
 
 # Create your views here.
 
@@ -160,7 +161,7 @@ def db_patients(request, login):
         
     #else:
     db_patients_form = DbPatientsForm()
-
+    
 
     patients = Patient.objects.all()
 
@@ -332,4 +333,22 @@ def postuplenie(request, login):
         'patients': patients,
     }
     template = "core/postuplenie.html"
+    return render(request, template, context)
+
+def add_form(request, login):
+
+    global g_login
+    g_login = login
+
+    db_form = DBFormsForm()
+    
+
+    ankets = Ancket.objects.all()
+
+    context = {
+        'login': login,
+        'form': db_form,
+        'ankets': ankets,
+    }
+    template = "core/add_form.html"
     return render(request, template, context)
