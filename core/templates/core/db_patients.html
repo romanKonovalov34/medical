@@ -99,59 +99,58 @@
                 </div>
             </div>
         </div>
+
+        <div class="mb-4 col-sm-12" style="position: absolute; top: 105%">
+            <div class="row justify-content-center">
+                <div class="col-11 text-center" style="background-color: white; box-shadow: 0 0 10px;">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Номер карты</th>
+                                <th scope="col">ФИО</th>
+                                <th scope="col">Дата рождения</th>
+                                <th scope="col">Пол</th>
+                                <th scope="col">Национальность</th>
+                                <th scope="col">Образование</th>
+                                <th scope="col">Адрес</th>
+                                <th scope="col">Телефон</th>
+                                <th scope="col">Место работы</th>
+                                <th scope="col">Должность</th>
+        
+                            </tr>
+                        </thead>
+        
+        
+                        <tbody>
+        
+                            {% for patient in patients %}
+        
+                            <tr>
+                                <td>{{ patient.number_card }}</td>
+                                <td>{{ patient.FIO }}</td>
+                                <td>{{ patient.date_birth }}</td>
+                                <td>{{ patient.sex }}</td>
+                                <td>{{ patient.nationality }}</td>
+                                <td>{{ patient.education }}</td>
+                                <td>{{ patient.address }}</td>
+                                <td>{{ patient.phone }}</td>
+                                <td>{{ patient.job }}</td>
+                                <td>{{ patient.position }}</td>
+                            </tr>
+        
+                            {% endfor %}
+        
+                        </tbody>
+        
+        
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 
 </form>
 
-
-
-<div class="mb-4 col-sm-12" style="position: absolute; top: 105%">
-    <div class="row justify-content-center">
-        <div class="col-11 text-center" style="background-color: white; box-shadow: 0 0 10px;">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">Номер карты</th>
-                        <th scope="col">ФИО</th>
-                        <th scope="col">Дата рождения</th>
-                        <th scope="col">Пол</th>
-                        <th scope="col">Национальность</th>
-                        <th scope="col">Образование</th>
-                        <th scope="col">Адрес</th>
-                        <th scope="col">Телефон</th>
-                        <th scope="col">Место работы</th>
-                        <th scope="col">Должность</th>
-
-                    </tr>
-                </thead>
-
-
-                <tbody>
-
-                    {% for patient in patients %}
-
-                    <tr>
-                        <td>{{ patient.number_card }}</td>
-                        <td>{{ patient.FIO }}</td>
-                        <td>{{ patient.date_birth }}</td>
-                        <td>{{ patient.sex }}</td>
-                        <td>{{ patient.nationality }}</td>
-                        <td>{{ patient.education }}</td>
-                        <td>{{ patient.address }}</td>
-                        <td>{{ patient.phone }}</td>
-                        <td>{{ patient.job }}</td>
-                        <td>{{ patient.position }}</td>
-                    </tr>
-
-                    {% endfor %}
-
-                </tbody>
-
-
-            </table>
-        </div>
-    </div>
-</div>
 
 
     {% endblock %}

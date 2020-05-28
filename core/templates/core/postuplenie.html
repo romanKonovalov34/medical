@@ -49,9 +49,14 @@
                 Работа с пациентом
             </p>
             <div class="btn-group-vertical">
-                <a type="button" class="mb-3 btn btn-danger" href="{% url 'add_form' login=login %}">Добавить новый опрос</a>
-                <button type="button" class="mb-3 btn btn-danger">Посмотреть данные</button>
-                <button type="button" class="mb-4 btn btn-danger">Посмотреть данные анкет</button>
+                <div class="mt-3 form-group row">
+                    <label for="" class="col-sm-2 col-form-label" style="text-align: left;">Номер карты пациента</label>
+                    <div class="col-sm-10">
+                        {{ form.number_card }}
+                    </div>
+                </div>
+
+                <a type="button" class="mb-3 btn btn-danger" href="{% url 'add_form' login=login %}">Начать работу</a>
             </div>
         </div>
     </div>
