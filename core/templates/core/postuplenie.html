@@ -41,26 +41,29 @@
 
 
 {% block content %}
+<form action="{% url 'job_with_db_anckets' %}" method="post">
+    {% csrf_token %}
 
-<div class="col-md-4 offset-md-4">
-    <div class="row justify-content-center">
-        <div class="col-3 text-center" style="background-color: white; box-shadow: 0 0 10px; position: fixed; top: 25%">
-            <p class="mt-3" style="font-size: 1.1em">
-                Работа с пациентом
-            </p>
-            <div class="btn-group-vertical">
-                <div class="mt-3 form-group row">
-                    <label for="" class="col-sm-2 col-form-label" style="text-align: left;">Номер карты пациента</label>
-                    <div class="col-sm-10">
-                        {{ form.number_card }}
+
+    <div class="col-md-4 offset-md-4">
+        <div class="row justify-content-center">
+            <div class="col-3 text-center" style="background-color: white; box-shadow: 0 0 10px; position: fixed; top: 25%">
+                <p class="mt-3" style="font-size: 1.1em">
+                    Работа с пациентом
+                </p>
+                <div class="btn-group-vertical">
+                    <div class="mt-3 form-group row">
+                        <label for="" class="col-sm-2 col-form-label" style="text-align: left;">Номер карты пациента</label>
+                        <div class="col-sm-10">
+                            {{ form.number_card }}
+                        </div>
                     </div>
+                    <button type="submit" class="mb-3 btn btn-primary" name='start'>Начать работу</button>
                 </div>
-
-                <a type="button" class="mb-3 btn btn-danger" href="{% url 'add_form' login=login %}">Начать работу</a>
             </div>
         </div>
     </div>
-</div>
+</tr>
 
 {% endblock %}
 

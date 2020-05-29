@@ -1,4 +1,5 @@
 import pdb
+import datetime
 
 from django.shortcuts import render
 from django.views.generic import View
@@ -22,9 +23,10 @@ from .models import Disease
 from .forms import SigninForm
 from .forms import RegisterForm
 from .forms import DbPatientsForm
-from .forms import DBFormsForm
+from .forms import DBAncketsForm
 from .forms import DbQuestionsForm
 from .forms import DbDiseasesForm
+from .forms import PostuplenieForm
 
 # Create your views here.
 
@@ -100,19 +102,6 @@ def register(request):
         reg_form = RegisterForm()
         template = "core/register.html"
         return render(request, template, {"form": reg_form})
-
-
-
-#def main(request):
-#    users = User.objects.all()
-
-#    context = {
-#        'users': users,
-#    }
-
-#    template = "core/main.html"
-#    return render(request, template, context)
-
 
 
 
@@ -322,42 +311,7 @@ def change_patient(request):
 
 
 
-# Страница "данные при поступлении"
-def postuplenie(request, login):
 
-    global g_login
-    g_login = login
-
-    db_patients_form = DbPatientsForm()
-
-
-    patients = Patient.objects.all()
-
-    context = {
-        'login': login,
-        'form': db_patients_form,
-        'patients': patients,
-    }
-    template = "core/postuplenie.html"
-    return render(request, template, context)
-
-def add_form(request, login):
-
-    global g_login
-    g_login = login
-
-    db_form = DBFormsForm()
-    
-
-    ankets = Ancket.objects.all()
-
-    context = {
-        'login': login,
-        'form': db_form,
-        'ankets': ankets,
-    }
-    template = "core/add_form.html"
-    return render(request, template, context)
 
 def db_questions(request, login):
 
@@ -468,3 +422,94 @@ def job_with_db_diseases(request):
 
 
         return redirect('/doctor-' + g_login + '/db-diseases/')
+
+# Страница "данные при поступлении"
+def postuplenie(request, login):
+    global g_login
+    g_login = login
+    
+    postuplenie_form = PostuplenieForm()
+
+    context = {
+        'login': login,
+        'form': postuplenie_form,
+    }
+    template = "core/postuplenie.html"
+    return render(request, template, context)
+
+    
+def db_anckets(request, login, number_card):
+
+    if request.method == "POST":
+
+        global g_login
+        g_login = login
+        pdb.set_trace()
+
+        db_anckets_form = DBAncketsForm()
+
+        ankets = Ancket.objects.all() #Надо чтобы макеты выбирал по номеру карты а не все анкеты пациентов.
+
+        context = {
+            'login': login,
+            'number_card': number_card,
+            'form': db_anckets_form,
+            'ankets': ankets,
+        }
+        template = "core/db_anckets.html"
+        return render(request, template, context)
+
+
+
+
+def job_with_db_anckets(request):
+    # pdb.set_trace()
+    if request.method == "POST":
+        # заход на сайт
+        db_anckets_form = DBAncketsForm()
+        ankets = Ancket.objects.all() #Надо чтобы макеты выбирал по номеру карты а не все анкеты пациентов.
+        
+        if 'start' in request.POST:
+            if Patient.objects.all().filter(number_card=request.POST.get("number_card")):
+                db_anckets_form.fields["number_card"].initial = request.POST.get("number_card")
+                ankets = Ancket.objects.filter(patient__number_card=request.POST.get("number_card"))
+            else:
+                db_anckets_form.fields["number_card"].initial = 'ОШИБКА: такой карты нет'
+
+            context = {
+                'login': request.POST.get("login"),
+                'form': db_anckets_form,
+                'ankets': ankets,
+            }
+            template = "core/db_anckets.html"
+            return render(request, template, context)
+        # добавление новой анкеты
+        elif 'add_opros' in request.POST:
+            fields_add_opros = {
+                'number_ancket': request.POST.get("number_ancket"),
+                'number_card': request.POST.get("number_card"),
+            }
+            ancket = Ancket()
+            
+            some_patient = Patient.objects.get(number_card = fields_add_opros['number_card'])
+            ancket.patient = some_patient
+            ancket.date = datetime.datetime.now()
+            ancket.save()
+
+            db_anckets_form.fields["number_card"].initial = request.POST.get("number_card")
+
+            ankets = Ancket.objects.filter(patient__number_card=request.POST.get("number_card"))
+            context = {
+                'login': request.POST.get("login"),
+                'form': db_anckets_form,
+                'ankets': ankets,
+            }
+            template = "core/db_anckets.html"
+            return render(request, template, context)
+        # TODO: добавление ответа к выбранной анкете
+        elif 'add_answer' in request.POST:
+                fields_add_answer = {
+                'number_ancket': request.POST.get("number_ancket"),
+                'number_card': request.POST.get("number_card"),
+            }
+            

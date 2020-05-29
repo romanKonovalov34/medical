@@ -54,19 +54,6 @@ class DbPatientsForm(forms.Form):
     job.widget.attrs.update({'class': 'form-control'})
     position.widget.attrs.update({'class': 'form-control'})
 
-# анкета
-class DBFormsForm(forms.Form):
-
-    number_ancket = forms.CharField(required='', label="Номер анкеты")
-    question = forms.CharField(required='', label="Вопрос")
-    answer = forms.CharField(required='', label="Ответ")
-    conviction = forms.CharField(required='', label="Уверенность")
-
-    number_ancket.widget.attrs.update({'class': 'form-control'})
-    question.widget.attrs.update({'class': 'form-control'})
-    answer.widget.attrs.update({'class': 'form-control'})
-    conviction.widget.attrs.update({'class': 'form-control'})
-
     
 class DbQuestionsForm(forms.Form):
     question_id = forms.IntegerField(required='', label="Код")
@@ -83,3 +70,22 @@ class DbDiseasesForm(forms.Form):
     diseases_id.widget.attrs.update({'class': 'form-control'})
     name.widget.attrs.update({'class': 'form-control'})
     note.widget.attrs.update({'class': 'form-control'})
+
+# анкета
+class DBAncketsForm(forms.Form):
+    number_card = forms.CharField(widget=forms.TextInput(attrs={'readonly':'readonly'}))
+    number_ancket = forms.CharField(required='', label="Номер анкеты")
+    question = forms.CharField(required='', label="Вопрос")
+    answer = forms.CharField(required='', label="Ответ")
+    conviction = forms.CharField(required='', label="Уверенность")
+
+    number_card.widget.attrs.update({'class': 'form-control'})
+    number_ancket.widget.attrs.update({'class': 'form-control'})
+    question.widget.attrs.update({'class': 'form-control'})
+    answer.widget.attrs.update({'class': 'form-control'})
+    conviction.widget.attrs.update({'class': 'form-control'})
+    
+class PostuplenieForm(forms.Form):
+    number_card = forms.IntegerField(label="Номер карты")
+
+    number_card.widget.attrs.update({'class': 'form-control'})

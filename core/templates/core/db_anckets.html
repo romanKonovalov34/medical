@@ -8,25 +8,20 @@
 {% block content %}
 
 
-<form action="{% url 'job_with_db' %}" method="POST">
+<form action="{% url 'job_with_db_anckets' %}" method="POST">
 
     {% csrf_token %}
-
-    <!-- <div class="col-md-4 offset-md-2" style="position: absolute; top: 15%;">
-        <div class="row justify-content-center">
-            <button type="submit" class="btn fa fa-2x fa-user-plus" name="_add" style="box-shadow: none"></button>
-            <button type="submit" class="btn fa fa-2x fa-user-times" name="_delete" style="box-shadow: none"></button>
-            <button type="submit" class="btn fa fa-2x fa-save" name="_change" style="box-shadow: none"></button>
-        </div>
-    </div> -->
-
 
     <div class="col-sm-12" style="position: absolute; top: 25%">
         <div class="row justify-content-center">
             <div class="col-7 text-center" style="background-color: white; box-shadow: 0 0 10px;">
                 <div class="col-15 text-center" style="background-color: aquamarine; box-shadow: 0 0 10px;">
+                    <span class="navbar-text" style="color: black">
+                        Номер карты: 
+                        {{ form.number_card }}
+                    </span>
                     <h3>
-                        Добавить новый опрос
+                        Добавить новый опрос (новую анкету)
                     </h3>
                     <div class="form-group row">
                         <button type="submit" name="add_opros" style='margin-left: 45%;'>Добавить</button>
@@ -38,7 +33,7 @@
                         Добавить ответ
                     </h3>
                     <div class="mt-3 form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="text-align: left;">Номер анкеты</label>
+                        <label for="" class="col-sm-2 col-form-label" style="text-align: left;">Номер анкеты с которой работаем</label>
                         <div class="col-sm-10">
                             {{ form.number_ancket }}
                         </div>
@@ -76,7 +71,7 @@
                             <tr>
                                 <th scope="col">Карта №</th>
                                 <th scope="col">ФИО</th>
-                                <th scope="col">Анкета №</th>
+                                <th scope="col">Код анкеты</th>
                                 <th scope="col">Дата анкетирования</th>
                                 <th scope="col">Вопрос</th>
                                 <th scope="col">Ответ</th>
@@ -88,10 +83,16 @@
         
                         <tbody>
                             {% if ankets|length > 0 %}
-                            {% for f in ankets  %}
+                            {% for ancket in ankets  %}
         
                             <tr>
-                                 <td>{{ f.date }}</td>
+                                <td>{{ ancket.patient.number_card }}</td>
+                                <td>{{ ancket.patient.FIO }}</td>
+                                <td>{{ ancket.id }}</td>
+                                <td>{{ ancket.date }}</td>
+                                <td>{{ ancket. }}</td>
+                                <td>{{ ancket. }}</td>
+                                <td>{{ ancket. }}</td>
                                 
                             </tr>
         
