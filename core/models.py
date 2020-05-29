@@ -84,7 +84,7 @@ class Answer(models.Model):
         verbose_name = 'ответ'
         verbose_name_plural='ответы'
 
-# Болезни
+# Болезни(диагнозы)
 class Disease(models.Model):
     name = models.CharField(max_length=100, verbose_name="Название")
     note = models.TextField() #описание

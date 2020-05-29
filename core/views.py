@@ -17,12 +17,14 @@ from .models import User
 from .models import Patient
 from .models import Ancket
 from .models import Question
+from .models import Disease
 
 from .forms import SigninForm
 from .forms import RegisterForm
 from .forms import DbPatientsForm
 from .forms import DBFormsForm
 from .forms import DbQuestionsForm
+from .forms import DbDiseasesForm
 
 # Create your views here.
 
@@ -409,3 +411,60 @@ def job_with_db_questions(request):
 
 
         return redirect('/doctor-' + g_login + '/db-questions/')
+
+def db_diseases(request, login):
+
+    global g_login
+    g_login = login
+    
+    db_diseases_form = DbDiseasesForm()
+    
+
+    diseases = Disease.objects.all()
+
+    context = {
+        'login': login,
+        'form': db_diseases_form,
+        'diseases': diseases,
+    }
+    template = "core/db_diseases.html"
+    return render(request, template, context)
+
+def job_with_db_diseases(request):
+   
+    if request.method == "POST":
+
+        fields = {
+            'diseases_id': request.POST.get("diseases_id"),
+            'name': request.POST.get("name"),
+            'note': request.POST.get("note"),
+
+        }
+        
+        if '_add' in request.POST:
+
+            disease = Disease()
+
+            if fields['diseases_id'] !='':
+                disease.id = fields['diseases_id']
+            disease.name = fields['name']
+            disease.note = fields['note']
+
+
+            disease.save()
+
+
+        #pdb.set_trace()
+        if '_delete' in request.POST:
+            if Disease.objects.all().filter(id=fields['diseases_id']):
+                Disease.objects.all().filter(id=fields['diseases_id']).delete()
+        else:
+            return redirect('/doctor-' + g_login + '/db-diseases/')
+
+         
+
+
+        #if '_change' in request.POST:
+
+
+        return redirect('/doctor-' + g_login + '/db-diseases/')

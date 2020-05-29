@@ -74,3 +74,12 @@ class DbQuestionsForm(forms.Form):
 
     question_id.widget.attrs.update({'class': 'form-control'})
     question.widget.attrs.update({'class': 'form-control'})
+
+class DbDiseasesForm(forms.Form):
+    diseases_id = forms.IntegerField(required='', label="Код")
+    name = forms.CharField(required='', max_length=100, label="название")
+    note = forms.CharField(required='', label="Пояснение")
+
+    diseases_id.widget.attrs.update({'class': 'form-control'})
+    name.widget.attrs.update({'class': 'form-control'})
+    note.widget.attrs.update({'class': 'form-control'})
