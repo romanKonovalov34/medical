@@ -1,3 +1,5 @@
+import pdb
+
 from django.shortcuts import render
 from django.views.generic import View
 from django.urls import reverse
@@ -14,11 +16,13 @@ from .models import User
 #from .models import Doctor
 from .models import Patient
 from .models import Ancket
+from .models import Question
 
 from .forms import SigninForm
 from .forms import RegisterForm
 from .forms import DbPatientsForm
 from .forms import DBFormsForm
+from .forms import DbQuestionsForm
 
 # Create your views here.
 
@@ -176,7 +180,7 @@ def db_patients(request, login):
 
 
 
-def job_with_db(request):
+def job_with_db_patients(request):
 
     if request.method == "POST":
 
@@ -352,3 +356,56 @@ def add_form(request, login):
     }
     template = "core/add_form.html"
     return render(request, template, context)
+
+def db_questions(request, login):
+
+    global g_login
+    g_login = login
+    
+    db_questions_form = DbQuestionsForm()
+    
+
+    questions = Question.objects.all()
+
+    context = {
+        'login': login,
+        'form': db_questions_form,
+        'questions': questions,
+    }
+    template = "core/db_questions.html"
+    return render(request, template, context)
+
+def job_with_db_questions(request):
+   
+    if request.method == "POST":
+
+        fields = {
+            'question_id': request.POST.get("question_id"),
+            'question': request.POST.get("question"),
+        }
+        
+        if '_add' in request.POST:
+
+            question = Question()
+
+            if fields['question_id'] !='':
+                question.id = fields['question_id']
+            question.question = fields['question']
+
+            question.save()
+
+
+        #pdb.set_trace()
+        if '_delete' in request.POST:
+            if Question.objects.all().filter(id=fields['question_id']):
+                Question.objects.all().filter(id=fields['question_id']).delete()
+        else:
+            return redirect('/doctor-' + g_login + '/db-questions/')
+
+         
+
+
+        #if '_change' in request.POST:
+
+
+        return redirect('/doctor-' + g_login + '/db-questions/')

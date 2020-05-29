@@ -56,19 +56,21 @@ class DbPatientsForm(forms.Form):
 
 # анкета
 class DBFormsForm(forms.Form):
-    number_card_opros = forms.CharField(required='', label="Номер карты")
-    number_card_answer  = forms.CharField(required='', label="Номер карты")
+
     number_ancket = forms.CharField(required='', label="Номер анкеты")
-    question = forms.CharField(required='', label="Номер анкеты")
-    answer = forms.CharField(required='', label="Номер анкеты")
-    conviction = forms.CharField(required='', label="Номер анкеты")
+    question = forms.CharField(required='', label="Вопрос")
+    answer = forms.CharField(required='', label="Ответ")
+    conviction = forms.CharField(required='', label="Уверенность")
 
-
-    number_card_opros.widget.attrs.update({'class': 'form-control'})
-    number_card_answer.widget.attrs.update({'class': 'form-control'})
     number_ancket.widget.attrs.update({'class': 'form-control'})
     question.widget.attrs.update({'class': 'form-control'})
     answer.widget.attrs.update({'class': 'form-control'})
     conviction.widget.attrs.update({'class': 'form-control'})
 
     
+class DbQuestionsForm(forms.Form):
+    question_id = forms.IntegerField(required='', label="Код")
+    question = forms.CharField(required='', max_length=100, label="ФИО")
+
+    question_id.widget.attrs.update({'class': 'form-control'})
+    question.widget.attrs.update({'class': 'form-control'})

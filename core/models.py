@@ -24,7 +24,7 @@ class User(models.Model):
 
 
 class Patient(models.Model):
-    number_card = models.IntegerField(max_length=50, verbose_name="Номер карты")
+    number_card = models.IntegerField(verbose_name="Номер карты")
     FIO = models.CharField(max_length=100, verbose_name="ФИО")
     date_birth = models.CharField(max_length=100, verbose_name="Дата рождения")
     sex = models.CharField(max_length=50, verbose_name="Пол")
@@ -59,7 +59,7 @@ class Ancket(models.Model):
 
 # Вопросы
 class Question(models.Model):
-    question = models.CharField(max_length=100, verbose_name="Дата анкеты")
+    question = models.CharField(max_length=100, verbose_name="Вопрос")
 
     def __str__(self):
         return self.name
