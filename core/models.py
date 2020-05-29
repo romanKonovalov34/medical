@@ -13,7 +13,7 @@ class User(models.Model):
 
 
     def __str__(self):
-        return self.name
+        return self.login
 
 
     class Meta():
@@ -37,7 +37,7 @@ class Patient(models.Model):
 
 
     def __str__(self):
-        return self.name
+        return self.number_card
 
 
     class Meta():
@@ -49,8 +49,8 @@ class Ancket(models.Model):
     date = models.CharField(max_length=100, verbose_name="Дата анкеты")
     patient = models.ForeignKey(Patient, on_delete = models.CASCADE)
 
-    def __str__(self):
-        return self.name
+    # def __str__(self):
+    #     return self.name
 
 
     class Meta():
@@ -62,7 +62,7 @@ class Question(models.Model):
     question = models.CharField(max_length=100, verbose_name="Вопрос")
 
     def __str__(self):
-        return self.name
+        return self.question
 
 
     class Meta():
@@ -73,11 +73,13 @@ class Question(models.Model):
 class Answer(models.Model):
     date = models.DateField()
     note = models.TextField()
+    conviction = models.IntegerField(default=0)
     ancket = models.ForeignKey(Ancket, on_delete = models.CASCADE)
     question = models.ForeignKey(Question, on_delete = models.CASCADE)
+    
 
     def __str__(self):
-        return self.name
+        return self.note
 
 
     class Meta():
@@ -105,7 +107,7 @@ class Diagnos(models.Model):
     disease = models.ForeignKey(Disease, on_delete = models.CASCADE)
 
     def __str__(self):
-        return self.name
+        return self.note
 
 
     class Meta():

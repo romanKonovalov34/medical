@@ -19,6 +19,8 @@ from .models import Patient
 from .models import Ancket
 from .models import Question
 from .models import Disease
+from .models import Answer
+
 
 from .forms import SigninForm
 from .forms import RegisterForm
@@ -467,19 +469,23 @@ def job_with_db_anckets(request):
     if request.method == "POST":
         # заход на сайт
         db_anckets_form = DBAncketsForm()
-        ankets = Ancket.objects.all() #Надо чтобы макеты выбирал по номеру карты а не все анкеты пациентов.
+        ankets = Ancket.objects.all()
         
         if 'start' in request.POST:
             if Patient.objects.all().filter(number_card=request.POST.get("number_card")):
                 db_anckets_form.fields["number_card"].initial = request.POST.get("number_card")
-                ankets = Ancket.objects.filter(patient__number_card=request.POST.get("number_card"))
+                ankets = Ancket.objects.filter(patient__number_card=request.POST.get("number_card")).order_by('-date')
+                # ankets.reverse()
+
             else:
                 db_anckets_form.fields["number_card"].initial = 'ОШИБКА: такой карты нет'
 
+            answers = Answer.objects.all().order_by('-date')
             context = {
                 'login': request.POST.get("login"),
                 'form': db_anckets_form,
                 'ankets': ankets,
+                'answers': answers,
             }
             template = "core/db_anckets.html"
             return render(request, template, context)
@@ -498,18 +504,52 @@ def job_with_db_anckets(request):
 
             db_anckets_form.fields["number_card"].initial = request.POST.get("number_card")
 
-            ankets = Ancket.objects.filter(patient__number_card=request.POST.get("number_card"))
+            ankets = Ancket.objects.filter(patient__number_card=request.POST.get("number_card")).order_by('-date')
+            # ankets.reverse()
+            answers = Answer.objects.all().order_by('-date')
             context = {
                 'login': request.POST.get("login"),
                 'form': db_anckets_form,
                 'ankets': ankets,
+                'answers': answers,
             }
             template = "core/db_anckets.html"
             return render(request, template, context)
         # TODO: добавление ответа к выбранной анкете
         elif 'add_answer' in request.POST:
-                fields_add_answer = {
+            fields_add_answer = {
                 'number_ancket': request.POST.get("number_ancket"),
                 'number_card': request.POST.get("number_card"),
+                'question': request.POST.get("question"),
+                'answer': request.POST.get("answer"),
+                'conviction': request.POST.get("conviction"),
+                
             }
+            # pdb.set_trace()
+            somevalue = fields_add_answer['number_ancket']
+            ancket = Ancket.objects.get(id = fields_add_answer['number_ancket'])
+            
+            answer = Answer()
+            answer.ancket = ancket
+            answer.date = datetime.datetime.now()
+            answer.note = fields_add_answer['answer']
+            answer.question = Question.objects.get(question = fields_add_answer['question'])#fields_add_answer['question']
+            answer.conviction = fields_add_answer['conviction']
+            answer.save()
+
+            db_anckets_form.fields["number_card"].initial = request.POST.get("number_card")
+            db_anckets_form.fields["number_ancket"].initial = request.POST.get("number_ancket")
+
+
+            ankets = Ancket.objects.filter(patient__number_card=request.POST.get("number_card")).order_by('-date')
+
+            answers = Answer.objects.all().order_by('-date')
+            context = {
+                'login': request.POST.get("login"),
+                'form': db_anckets_form,
+                'ankets': ankets,
+                'answers': answers,
+            }
+            template = "core/db_anckets.html"
+            return render(request, template, context)
             

@@ -70,9 +70,9 @@
                         <thead>
                             <tr>
                                 <th scope="col">Карта №</th>
-                                <th scope="col">ФИО</th>
+                                <th scope="col">ФИО пациента</th>
                                 <th scope="col">Код анкеты</th>
-                                <th scope="col">Дата анкетирования</th>
+                                <th scope="col">Дата создания анкеты</th>
                                 <th scope="col">Вопрос</th>
                                 <th scope="col">Ответ</th>
                                 <th scope="col">Уверенность %</th>
@@ -83,20 +83,30 @@
         
                         <tbody>
                             {% if ankets|length > 0 %}
-                            {% for ancket in ankets  %}
-        
-                            <tr>
-                                <td>{{ ancket.patient.number_card }}</td>
-                                <td>{{ ancket.patient.FIO }}</td>
-                                <td>{{ ancket.id }}</td>
-                                <td>{{ ancket.date }}</td>
-                                <td>{{ ancket. }}</td>
-                                <td>{{ ancket. }}</td>
-                                <td>{{ ancket. }}</td>
-                                
-                            </tr>
-        
-                            {% endfor %}
+                                {% for ancket in ankets  %}
+                                <tr>
+                                    <td>{{ ancket.patient.number_card }}</td>
+                                    <td>{{ ancket.patient.FIO }}</td>
+                                    <td>{{ ancket.id }}</td>
+                                    <td>{{ ancket.date }}</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                </tr>
+                                    {% for answer in answers %}
+                                        {% ifequal answer.ancket.id ancket.id %}
+                                        <tr>
+                                            <td>{{ ancket.patient.number_card }}</td>
+                                            <td>{{ ancket.patient.FIO }}</td>
+                                            <td>{{ ancket.id }}</td>
+                                            <td>{{ ancket.date }}</td>
+                                            <td>{{ answer.question.question }}</td>
+                                            <td>{{ answer.note }}</td>
+                                            <td>{{ answer.conviction }}</td>
+                                        </tr>
+                                        {% endifequal %}
+                                    {% endfor %}
+                                {% endfor %}
                             {% endif %}
         
                         </tbody>

@@ -6,8 +6,8 @@ from .models import User
 #from .models import Doctor
 from .models import Patient
 from .models import Ancket
-
-
+from .models import Question
+from .models import Disease
 
 class SigninForm(forms.Form):
     login = forms.CharField(max_length=50, label="Логин")
@@ -75,9 +75,9 @@ class DbDiseasesForm(forms.Form):
 class DBAncketsForm(forms.Form):
     number_card = forms.CharField(widget=forms.TextInput(attrs={'readonly':'readonly'}))
     number_ancket = forms.CharField(required='', label="Номер анкеты")
-    question = forms.CharField(required='', label="Вопрос")
+    question = forms.ModelChoiceField (queryset = Question.objects.all(),to_field_name="question")
     answer = forms.CharField(required='', label="Ответ")
-    conviction = forms.CharField(required='', label="Уверенность")
+    conviction = forms.IntegerField(required='', label="Уверенность")
 
     number_card.widget.attrs.update({'class': 'form-control'})
     number_ancket.widget.attrs.update({'class': 'form-control'})
