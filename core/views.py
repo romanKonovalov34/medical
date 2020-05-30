@@ -29,6 +29,7 @@ from .forms import DBAncketsForm
 from .forms import DbQuestionsForm
 from .forms import DbDiseasesForm
 from .forms import PostuplenieForm
+from .forms import ProfileForm
 
 # Create your views here.
 
@@ -108,6 +109,7 @@ def register(request):
 
 
 def main(request):
+    
     if request.method == "POST":
         user = User()
 
@@ -446,7 +448,6 @@ def db_anckets(request, login, number_card):
 
         global g_login
         g_login = login
-        pdb.set_trace()
 
         db_anckets_form = DBAncketsForm()
 
@@ -553,3 +554,54 @@ def job_with_db_anckets(request):
             template = "core/db_anckets.html"
             return render(request, template, context)
             
+def profile(request,login):
+    global g_login
+    g_login = login
+
+    profile_form = ProfileForm()
+    # pdb.set_trace()
+    user = User.objects.get(login = login)
+    fields_save = {
+            'login': "",
+            'FIO': "",
+            'postion': "",
+            'department': "",
+            'password': "",
+        }
+
+    if request.method == "POST":
+            if 'save' in request.POST:
+                fields_save = {
+                    'login': request.POST.get("login"),
+                    'FIO': request.POST.get("FIO"),
+                    'postion': request.POST.get("postion"),
+                    'department': request.POST.get("department"),
+                    'password': request.POST.get("password"),
+                }
+                user = User.objects.get(login = login)
+                user.FIO = fields_save['FIO']
+                if User.objects.all().filter(login = fields_save['login']):
+                    donothing = 0
+                else:
+                    user.login = fields_save['login']
+                user.Postion = fields_save['postion']
+                user.Department = fields_save['department']
+                user.password = fields_save['password']
+                
+                user.save()
+
+    # pdb.set_trace()
+    template = "core/profile.html"
+
+    profile_form = ProfileForm()
+    profile_form.fields['FIO'].initial = user.FIO
+    profile_form.fields['login'].initial = user.login
+    profile_form.fields['postion'].initial = user.Postion
+    profile_form.fields['department'].initial = user.Department
+    profile_form.fields['password'].initial = user.password
+
+    context = {
+        'login': login,
+        'form': profile_form,
+        }
+    return render(request, template, context)

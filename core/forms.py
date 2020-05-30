@@ -89,3 +89,18 @@ class PostuplenieForm(forms.Form):
     number_card = forms.IntegerField(label="Номер карты")
 
     number_card.widget.attrs.update({'class': 'form-control'})
+
+
+class ProfileForm(forms.Form):
+    FIO = forms.CharField(required='', label="ФИО врача")
+    login = forms.CharField(required='', label="Логин")
+    postion = forms.CharField(required='', label="Позиция")
+    department = forms.CharField(required='', label="Отделение")
+    password = forms.CharField(label="Пароль", widget=forms.PasswordInput())
+
+    FIO.widget.attrs.update({'class': 'form-control'})
+    login.widget.attrs.update({'class': 'form-control'})
+    postion.widget.attrs.update({'class': 'form-control'})
+    department.widget.attrs.update({'class': 'form-control'})
+    password.widget.attrs.update({'class': 'form-control'})
+    

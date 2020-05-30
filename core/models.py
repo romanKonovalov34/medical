@@ -7,10 +7,12 @@ from django.db import models
 
 
 class User(models.Model):
-    login = models.CharField(max_length=200, verbose_name='ФИО')
+    login = models.CharField(max_length=200, verbose_name='Логин')
     password = models.CharField(max_length = 50, verbose_name='Пароль')
     isAdmin = models.BooleanField(verbose_name='Я администратор') # Не нужно, но пусть будет чтобы ошибок не было.
-
+    FIO = models.CharField(max_length = 50, verbose_name='ФИО', default="")
+    Postion = models.CharField(max_length = 50, verbose_name='Позиция', default="")
+    Department = models.CharField(max_length = 50, verbose_name='Отделение', default="")
 
     def __str__(self):
         return self.login
