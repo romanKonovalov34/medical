@@ -1,3 +1,5 @@
+import datetime
+
 from django import forms
 from django.core.exceptions import ValidationError
 
@@ -105,11 +107,15 @@ class ProfileForm(forms.Form):
     password.widget.attrs.update({'class': 'form-control'})
     
 class DBEpicrizForm(forms.Form):
-    invalid = forms.BooleanField()
+    number_card = forms.CharField(widget=forms.TextInput(attrs={'readonly':'readonly'}))
+    number_epic = forms.CharField(required='')
+    invalid = forms.BooleanField(required=False, widget=forms.CheckboxInput())
     lechenie = forms.CharField(required='')
-    date_gospit = forms.CharField(widget=forms.DateTimeInput())
-    date_vipisky = forms.CharField(widget=forms.DateTimeInput())
+    date_gospit = forms.CharField(required='', label='Дата госпитализации', widget=forms.TextInput(attrs={'placeholder': 'Пожалуйста, используйте следующий формат: ГГГГ-ММ-ДД'}))
+    date_vipisky = forms.CharField(required='', label='Дата выписки', widget=forms.TextInput(attrs={'placeholder': 'Пожалуйста, используйте следующий формат: ГГГГ-ММ-ДД'}))
 
+    number_card.widget.attrs.update({'class': 'form-control'})
+    number_epic.widget.attrs.update({'class': 'form-control'})
     invalid.widget.attrs.update({'class': 'form-control'})
     lechenie.widget.attrs.update({'class': 'form-control'})
     date_gospit.widget.attrs.update({'class': 'form-control'})

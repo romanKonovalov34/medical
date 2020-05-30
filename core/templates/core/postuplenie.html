@@ -7,7 +7,7 @@
 
 
 {% block content %}
-<form action="{% url 'job_with_db_anckets' %}" method="post">
+<form action="{% url 'chose_method_work_patient' login=login%}" method="post">
     {% csrf_token %}
 
 

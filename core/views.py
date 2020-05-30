@@ -20,6 +20,7 @@ from .models import Ancket
 from .models import Question
 from .models import Disease
 from .models import Answer
+from .models import Epicriz
 
 
 from .forms import SigninForm
@@ -30,6 +31,7 @@ from .forms import DbQuestionsForm
 from .forms import DbDiseasesForm
 from .forms import PostuplenieForm
 from .forms import ProfileForm
+from .forms import DBEpicrizForm
 
 # Create your views here.
 
@@ -441,8 +443,9 @@ def postuplenie(request, login):
     template = "core/postuplenie.html"
     return render(request, template, context)
 
-    
+# TODO: Удалить в следующиемм релизе, нигде не используется.    
 def db_anckets(request, login, number_card):
+    pdb.set_trace()
 
     if request.method == "POST":
 
@@ -463,7 +466,148 @@ def db_anckets(request, login, number_card):
         return render(request, template, context)
 
 
+def chose_method_work_patient(request, login):
+    if request.method == "POST":
+        if 'opros_btn' in request.POST:
+            return job_with_db_anckets(request)
+        if 'epicriz_btn' in request.POST:   
+            return job_with_db_epicriz(request, login)
+        # if 'diagnoz_btn' in request.POST:   
+        #     return job_with_db_epicriz(request)
 
+def job_with_db_epicriz(request, login):
+        # pdb.set_trace()
+        # заход на сайт
+        db_epicriz_form = DBEpicrizForm()
+        epicrizis = Epicriz.objects.all()
+        # pdb.set_trace()
+        patient = Patient.objects.get(number_card = request.POST.get("number_card"))
+        user = User.objects.get(login = login)
+        if 'epicriz_btn' in request.POST:
+            if Patient.objects.all().filter(number_card=request.POST.get("number_card")):
+                db_epicriz_form.fields["number_card"].initial = request.POST.get("number_card")
+                epicrizis = Epicriz.objects.filter(patient__number_card=request.POST.get("number_card")).order_by('-date_gospit')
+            else:
+                db_epicriz_form.fields["number_card"].initial = 'ОШИБКА: такой карты нет'
+            # answers = Answer.objects.all().order_by('-date')
+            context = {
+                'login': login,
+                'form': db_epicriz_form,
+                'epicrizis': epicrizis,
+                'patient': patient,
+                'user': user,
+            }
+            template = "core/db_epicriz.html"
+            return render(request, template, context)
+        # добавление нового эпикриза
+        elif 'add_btn' in request.POST:
+            db_epicriz_form.fields["number_card"].initial = request.POST.get("number_card")
+            is_invalid = False
+            if request.POST.get("invalid"):
+                is_invalid = True
+            else:
+                is_invalid = False
+            # fields_add_epic = {
+            #     'invalid': is_invalid,
+            #     'lechenie': request.POST.get("lechenie"),
+            #     'date_gospit': request.POST.get("date_gospit"),
+            #     'lechenie': request.POST.get("date_vipisky"),
+            # }
+            epicriz = Epicriz()
+            # pdb.set_trace()
+            epicriz.patient = patient
+            epicriz.user = user
+            epicriz.invalid = is_invalid
+            epicriz.lechenie = request.POST.get("lechenie")
+            epicriz.date_gospit = request.POST.get("date_gospit")
+            epicriz.date_vipisky = request.POST.get("date_vipisky")
+
+            epicriz.save()
+
+            epicrizis = Epicriz.objects.filter(patient__number_card=request.POST.get("number_card")).order_by('-date_gospit')
+            context = {
+                'login': login,
+                'form': db_epicriz_form,
+                'epicrizis': epicrizis,
+                'patient': patient,
+                'user': user,
+            }
+            template = "core/db_epicriz.html"
+            return render(request, template, context)
+        # удаление 
+        elif 'delete_btn' in request.POST:
+            epicriz = Epicriz()
+            epicriz = Epicriz.objects.get(id = request.POST.get("number_epic"))
+            epicriz.delete()
+            
+            db_epicriz_form.fields["number_card"].initial = request.POST.get("number_card")
+            epicrizis = Epicriz.objects.filter(patient__number_card=request.POST.get("number_card")).order_by('-date_gospit')
+            context = {
+                'login': login,
+                'form': db_epicriz_form,
+                'epicrizis': epicrizis,
+                'patient': patient,
+                'user': user,
+            }
+            template = "core/db_epicriz.html"
+            return render(request, template, context)
+        elif 'change_btn' in request.POST:
+            db_epicriz_form.fields["number_card"].initial = request.POST.get("number_card")
+            is_invalid = False
+            if request.POST.get("invalid"):
+                is_invalid = True
+            else:
+                is_invalid = False
+            # fields_add_epic = {
+            #     'invalid': is_invalid,
+            #     'lechenie': request.POST.get("lechenie"),
+            #     'date_gospit': request.POST.get("date_gospit"),
+            #     'lechenie': request.POST.get("date_vipisky"),
+            # }
+            epicriz = Epicriz.objects.get(id = request.POST.get("number_epic"))
+            epicriz.patient = patient
+            epicriz.user = user
+            epicriz.invalid = is_invalid
+            epicriz.lechenie = request.POST.get("lechenie")
+            epicriz.date_gospit = request.POST.get("date_gospit")
+            epicriz.date_vipisky = request.POST.get("date_vipisky")
+
+            epicriz.save()
+
+            epicrizis = Epicriz.objects.filter(patient__number_card=request.POST.get("number_card")).order_by('-date_gospit')
+            context = {
+                'login': login,
+                'form': db_epicriz_form,
+                'epicrizis': epicrizis,
+                'patient': patient,
+                'user': user,
+            }
+            template = "core/db_epicriz.html"
+            return render(request, template, context)
+        elif 'get_data_epic' in request.POST:
+            db_epicriz_form.fields["number_card"].initial = request.POST.get("number_card")
+            is_invalid = False
+            if request.POST.get("invalid"):
+                is_invalid = True
+            else:
+                is_invalid = False
+            epicriz = Epicriz.objects.get(id = request.POST.get("number_epic"))
+            db_epicriz_form.fields["number_epic"].initial = request.POST.get("number_epic")
+            db_epicriz_form.fields["lechenie"].initial = epicriz.lechenie
+            db_epicriz_form.fields["date_gospit"].initial = epicriz.date_gospit
+            db_epicriz_form.fields["date_vipisky"].initial = epicriz.date_vipisky
+
+            epicrizis = Epicriz.objects.filter(patient__number_card=request.POST.get("number_card")).order_by('-date_gospit')
+            context = {
+                'login': login,
+                'form': db_epicriz_form,
+                'epicrizis': epicrizis,
+                'patient': patient,
+                'user': user,
+            }
+            template = "core/db_epicriz.html"
+            return render(request, template, context)
+        
 
 def job_with_db_anckets(request):
     # pdb.set_trace()
@@ -516,7 +660,7 @@ def job_with_db_anckets(request):
             }
             template = "core/db_anckets.html"
             return render(request, template, context)
-        # TODO: добавление ответа к выбранной анкете
+        # добавление ответа к выбранной анкете
         elif 'add_answer' in request.POST:
             fields_add_answer = {
                 'number_ancket': request.POST.get("number_ancket"),

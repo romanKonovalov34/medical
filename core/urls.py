@@ -18,6 +18,9 @@ urlpatterns = [
     path('doctor-<login>/postuplenie/db-anckets', views.db_anckets, name="db_anckets"),
     path('doctor-<login>/profile/', views.profile, name="profile"),
     path('job-with-db-anckets/', views.job_with_db_anckets, name="job_with_db_anckets"),
+    path('doctor-<login>/chose-method-work-patient/', views.chose_method_work_patient, name="chose_method_work_patient"),
+    path('doctor-<login>/job-with-db-epicriz/', views.job_with_db_epicriz, name="job_with_db_epicriz"),
+
 
 
 ]
