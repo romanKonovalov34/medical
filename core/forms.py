@@ -104,3 +104,13 @@ class ProfileForm(forms.Form):
     department.widget.attrs.update({'class': 'form-control'})
     password.widget.attrs.update({'class': 'form-control'})
     
+class DBEpicrizForm(forms.Form):
+    invalid = forms.BooleanField()
+    lechenie = forms.CharField(required='')
+    date_gospit = forms.CharField(widget=forms.DateTimeInput())
+    date_vipisky = forms.CharField(widget=forms.DateTimeInput())
+
+    invalid.widget.attrs.update({'class': 'form-control'})
+    lechenie.widget.attrs.update({'class': 'form-control'})
+    date_gospit.widget.attrs.update({'class': 'form-control'})
+    date_vipisky.widget.attrs.update({'class': 'form-control'})

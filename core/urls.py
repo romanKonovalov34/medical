@@ -16,8 +16,8 @@ urlpatterns = [
     path('doctor-<login>/db-diseases/', views.db_diseases, name="db_diseases"),
     path('job-with-db-diseases/', views.job_with_db_diseases, name="job_with_db_diseases"),
     path('doctor-<login>/postuplenie/db-anckets', views.db_anckets, name="db_anckets"),
-    path('job-with-db-anckets/', views.job_with_db_anckets, name="job_with_db_anckets"),
     path('doctor-<login>/profile/', views.profile, name="profile"),
+    path('job-with-db-anckets/', views.job_with_db_anckets, name="job_with_db_anckets"),
 
 
 ]
