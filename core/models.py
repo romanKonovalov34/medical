@@ -116,5 +116,21 @@ class Diagnos(models.Model):
         verbose_name = 'диагноз'
         verbose_name_plural='диагнозы'
 
+# Эпикризы
+class Epicriz(models.Model):
+    patient = models.ForeignKey(Patient, on_delete = models.CASCADE)
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    invalid = models.BooleanField(default = False)
+    lechenie = models.TextField()
+    date_gospit = models.DateField()
+    date_vipisky = models.DateField()
+
+    def __str__(self):
+        return self.lechenie
+
+
+    class Meta():
+        verbose_name = 'эпикриз'
+        verbose_name_plural='эпикризы'
 
 
