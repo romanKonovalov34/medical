@@ -30,7 +30,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-tip-nw dropdown-menu-right" aria-labelledby="dropdownMenuButton" style="box-shadow: 0 0 10px">
                                     <a type="button" class="dropdown-item" href="{% url 'profile' login=login%}">Профиль</a>
-                                    <a class="dropdown-item" href="{% url 'base_core' %}"">Выйти</a>
+                                    <a class="dropdown-item" href="{% url 'base_core' %}">Выйти</a>
                                 </div>
                             
                         </div>
@@ -67,9 +67,9 @@
             </p>
             <div class="btn-group-vertical">
                 <a type="button" class="mt-1 mb-3 btn btn-danger" href="{% url 'db_patients' login=login %}">База данных пациентов</a>
-                <button type="button" class="mb-3 btn btn-danger">Эпикризы</button>
-                <a type="button" class="mb-3 btn btn-danger" href="{% url 'postuplenie' login=login %}">Данные при поступлении</a>
-                <button type="button" class="mb-4 btn btn-danger">Диагноз</button>
+                <!-- <button type="button" class="mb-3 btn btn-danger">Эпикризы</button> -->
+                <a type="button" class="mb-3 btn btn-danger" href="{% url 'postuplenie' login=login %}">Работа с поступившим</a>
+                <!-- <button type="button" class="mb-4 btn btn-danger">Диагноз</button> -->
             </div>
         </div>
     </div>

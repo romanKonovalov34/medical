@@ -472,7 +472,7 @@ def job_with_db_anckets(request):
         db_anckets_form = DBAncketsForm()
         ankets = Ancket.objects.all()
         
-        if 'start' in request.POST:
+        if 'opros_btn' in request.POST:
             if Patient.objects.all().filter(number_card=request.POST.get("number_card")):
                 db_anckets_form.fields["number_card"].initial = request.POST.get("number_card")
                 ankets = Ancket.objects.filter(patient__number_card=request.POST.get("number_card")).order_by('-date')
