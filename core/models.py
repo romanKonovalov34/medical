@@ -49,10 +49,10 @@ class Patient(models.Model):
 # Сущность анкета пациента
 class Ancket(models.Model):
     date = models.CharField(max_length=100, verbose_name="Дата анкеты")
-    patient = models.ForeignKey(Patient, on_delete = models.CASCADE)
+    patient = models.ForeignKey(Patient, on_delete = models.CASCADE, verbose_name="Пациент")
 
-    # def __str__(self):
-    #     return self.name
+    def __str__(self):
+        return self.date
 
 
     class Meta():
@@ -101,29 +101,14 @@ class Disease(models.Model):
         verbose_name = 'болезнь'
         verbose_name_plural='болезни'
 
-# Диагнозы
-class Diagnos(models.Model):
-    note = models.TextField()
-    ancket = models.ForeignKey(Ancket, on_delete = models.CASCADE)
-    user = models.ForeignKey(User, on_delete = models.CASCADE)
-    disease = models.ForeignKey(Disease, on_delete = models.CASCADE)
-
-    def __str__(self):
-        return self.note
-
-
-    class Meta():
-        verbose_name = 'диагноз'
-        verbose_name_plural='диагнозы'
-
 # Эпикризы
 class Epicriz(models.Model):
     patient = models.ForeignKey(Patient, on_delete = models.CASCADE)
     user = models.ForeignKey(User, on_delete = models.CASCADE)
     invalid = models.BooleanField(default = False)
-    lechenie = models.TextField()
-    date_gospit = models.DateField()
-    date_vipisky = models.DateField()
+    lechenie = models.CharField(max_length=500, default="", verbose_name="Лечение", null=True)
+    date_gospit = models.DateField(default = "1999-01-01" , null=True)
+    date_vipisky = models.DateField(default = "1999-01-01", null=True)
 
     def __str__(self):
         return self.lechenie
@@ -134,3 +119,17 @@ class Epicriz(models.Model):
         verbose_name_plural='эпикризы'
 
 
+# Диагнозы
+class Diagnos(models.Model):
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    epicriz = models.ForeignKey(Epicriz, on_delete = models.CASCADE)
+    disease = models.ForeignKey(Disease, on_delete = models.CASCADE)
+    note = models.TextField()
+
+    def __str__(self):
+        return self.note
+
+
+    class Meta():
+        verbose_name = 'диагноз'
+        verbose_name_plural='диагнозы'

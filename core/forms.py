@@ -10,6 +10,7 @@ from .models import Patient
 from .models import Ancket
 from .models import Question
 from .models import Disease
+from .models import Epicriz
 
 class SigninForm(forms.Form):
     login = forms.CharField(max_length=50, label="Логин")
@@ -110,7 +111,7 @@ class DBEpicrizForm(forms.Form):
     number_card = forms.CharField(widget=forms.TextInput(attrs={'readonly':'readonly'}))
     number_epic = forms.CharField(required='')
     invalid = forms.BooleanField(required=False, widget=forms.CheckboxInput())
-    lechenie = forms.CharField(required='')
+    lechenie = forms.CharField(required='', label='Лечение')
     date_gospit = forms.CharField(required='', label='Дата госпитализации', widget=forms.TextInput(attrs={'placeholder': 'Пожалуйста, используйте следующий формат: ГГГГ-ММ-ДД'}))
     date_vipisky = forms.CharField(required='', label='Дата выписки', widget=forms.TextInput(attrs={'placeholder': 'Пожалуйста, используйте следующий формат: ГГГГ-ММ-ДД'}))
 
@@ -120,3 +121,16 @@ class DBEpicrizForm(forms.Form):
     lechenie.widget.attrs.update({'class': 'form-control'})
     date_gospit.widget.attrs.update({'class': 'form-control'})
     date_vipisky.widget.attrs.update({'class': 'form-control'})
+
+class DbDiagnosesForm(forms.Form):
+    number_card = forms.CharField(widget=forms.TextInput(attrs={'readonly':'readonly'}), label="Номер карты")
+    number_diag = forms.CharField(required='', label="Код диагноза")
+    note = forms.CharField(required='', max_length=100, label="Сопоствующий диагноз")
+    disease = forms.ModelChoiceField (queryset = Disease.objects.all(), to_field_name="name", label="болезнь(диагноз)")
+    epicriz = forms.ModelChoiceField (queryset = Epicriz.objects.all(), to_field_name="lechenie", label="Эпикриз")
+
+    number_card.widget.attrs.update({'class': 'form-control'})
+    number_diag.widget.attrs.update({'class': 'form-control'})
+    note.widget.attrs.update({'class': 'form-control'})
+    disease.widget.attrs.update({'class': 'form-control'})
+    epicriz.widget.attrs.update({'class': 'form-control'})

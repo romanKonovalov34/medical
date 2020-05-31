@@ -21,6 +21,7 @@ from .models import Question
 from .models import Disease
 from .models import Answer
 from .models import Epicriz
+from .models import Diagnos
 
 
 from .forms import SigninForm
@@ -32,6 +33,7 @@ from .forms import DbDiseasesForm
 from .forms import PostuplenieForm
 from .forms import ProfileForm
 from .forms import DBEpicrizForm
+from .forms import DbDiagnosesForm
 
 # Create your views here.
 
@@ -467,13 +469,125 @@ def db_anckets(request, login, number_card):
 
 
 def chose_method_work_patient(request, login):
+    
     if request.method == "POST":
         if 'opros_btn' in request.POST:
             return job_with_db_anckets(request)
         if 'epicriz_btn' in request.POST:   
             return job_with_db_epicriz(request, login)
-        # if 'diagnoz_btn' in request.POST:   
-        #     return job_with_db_epicriz(request)
+        if 'diagnoz_btn' in request.POST:   
+            return job_with_db_diagnozes(request, login)
+
+def job_with_db_diagnozes(request, login):
+        # заход на сайт
+        # pdb.set_trace()
+        # pdb.set_trace()
+
+        db_diagnos_form = DbDiagnosesForm()
+        diagnoses = Diagnos.objects.all()
+        # pdb.set_trace()
+        patient = Patient.objects.get(number_card = request.POST.get("number_card"))
+        user = User.objects.get(login = login)
+        if 'diagnoz_btn' in request.POST:
+            if Patient.objects.all().filter(number_card=request.POST.get("number_card")):
+                db_diagnos_form.fields["number_card"].initial = request.POST.get("number_card")
+                epicrizis = Epicriz.objects.filter(patient__number_card=request.POST.get("number_card")).order_by('-date_gospit')
+                diagnoses = Diagnos.objects.select_related().all()
+                # diagnoses = Diagnos.objects.
+            else:
+                db_diagnos_form.fields["number_card"].initial = 'ОШИБКА: такой карты нет'
+            # answers = Answer.objects.all().order_by('-date')
+            context = {
+                'login': login,
+                'form': db_diagnos_form,
+                'diagnoses': diagnoses,
+                'patient': patient,
+                'user': user,
+            }
+            template = "core/db_diagnoses.html"
+            return render(request, template, context)
+        # добавление нового диагноза
+        elif 'add_btn' in request.POST:
+            
+            db_diagnos_form.fields["number_card"].initial = request.POST.get("number_card")
+            # vovasss
+            diagnos = Diagnos()
+            # pdb.set_trace()
+            diagnos.user = user
+            diagnos.epicriz = Epicriz.objects.get(lechenie = request.POST.get("epicriz"))
+            diagnos.disease = Disease.objects.get(name = request.POST.get("disease"))
+            diagnos.note = request.POST.get("note")
+
+            diagnos.save()
+
+            diagnoses = Diagnos.objects.select_related().all()
+            context = {
+                'login': login,
+                'form': db_diagnos_form,
+                'diagnoses': diagnoses,
+                'patient': patient,
+                'user': user,
+            }
+            template = "core/db_diagnoses.html"
+            return render(request, template, context)
+        # удаление 
+        elif 'delete_btn' in request.POST:
+            diagnos = Diagnos()
+            diagnos = Diagnos.objects.get(id = request.POST.get("number_diag"))
+            diagnos.delete()
+            
+            db_diagnos_form.fields["number_card"].initial = request.POST.get("number_card")
+            diagnoses = Diagnos.objects.select_related().all()
+            context = {
+                'login': login,
+                'form': db_diagnos_form,
+                'diagnoses': diagnoses,
+                'patient': patient,
+                'user': user,
+            }
+            template = "core/db_diagnoses.html"
+            return render(request, template, context)
+        elif 'change_btn' in request.POST:
+            db_diagnos_form.fields["number_card"].initial = request.POST.get("number_card")
+
+            diagnos = Diagnos.objects.get(id = request.POST.get("number_diag"))
+            diagnos.user = user
+            diagnos.epicriz = Epicriz.objects.get(lechenie = request.POST.get("epicriz"))
+            diagnos.disease = Disease.objects.get(name = request.POST.get("disease"))
+            diagnos.note = request.POST.get("note")
+
+            diagnos.save()
+
+            diagnoses = Diagnos.objects.select_related().all()
+            context = {
+                'login': login,
+                'form': db_diagnos_form,
+                'diagnoses': diagnoses,
+                'patient': patient,
+                'user': user,
+            }
+            template = "core/db_diagnoses.html"
+            return render(request, template, context)
+        # TODO: получение данных диагноза в формы
+        # elif 'get_data_diag' in request.POST:
+        #     db_diagnos_form.fields["number_card"].initial = request.POST.get("number_card")
+
+        #     epicriz = Epicriz.objects.get(id = request.POST.get("number_epic"))
+        #     db_diagnos_form.fields["number_epic"].initial = request.POST.get("number_epic")
+        #     db_diagnos_form.fields["lechenie"].initial = epicriz.lechenie
+        #     db_diagnos_form.fields["date_gospit"].initial = epicriz.date_gospit
+        #     db_diagnos_form.fields["date_vipisky"].initial = epicriz.date_vipisky
+
+        #     diagnoses = Diagnos.objects.select_related().all()
+        #     context = {
+        #         'login': login,
+        #         'form': db_diagnos_form,
+        #         'diagnoses': diagnoses,
+        #         'patient': patient,
+        #         'user': user,
+        #     }
+        #     template = "core/db_diagnoses.html"
+        #     return render(request, template, context)
 
 def job_with_db_epicriz(request, login):
         # pdb.set_trace()
