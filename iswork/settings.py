@@ -78,10 +78,10 @@ WSGI_APPLICATION = 'iswork.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',#postgresql',
+        'ENGINE': 'django.db.backends.postgresql',#postgresql_psycopg2',
         'NAME': 'postgres',
         'USER': 'postgres',
-        'PASSWORD': 'admin', #ОЧЕНЬ ВАЖНО, У РОМЫ пароль 123 , У Вовы admin
+        'PASSWORD': '123', #ОЧЕНЬ ВАЖНО, У РОМЫ пароль 123 , У Вовы admin
         'HOST': 'localhost',#'127.0.0.1',
         'PORT': '5432',
     }

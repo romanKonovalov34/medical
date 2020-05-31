@@ -2,11 +2,13 @@
   "ExpandedNodes": [
     "",
     "\\core",
+    "\\core\\migrations",
+    "\\core\\static",
     "\\core\\templates",
     "\\core\\templates\\core",
     "\\iswork",
     "\\templates"
   ],
-  "SelectedNode": "\\core\\views.py",
+  "SelectedNode": "\\iswork\\settings.py",
   "PreviewInSolutionExplorer": false
 }
