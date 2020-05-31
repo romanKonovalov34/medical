@@ -9,6 +9,19 @@ urlpatterns = [
     path('register/', views.register, name="register"),
     path('main/', views.main, name="main"),
     path('doctor-<login>/db-patients/', views.db_patients, name="db_patients"),
-    path('job-with-db/', views.job_with_db, name="job_with_db"),
+    path('job-with-db-patients/', views.job_with_db_patients, name="job_with_db_patients"),
+    path('doctor-<login>/postuplenie/', views.postuplenie, name="postuplenie"),
+    path('doctor-<login>/db-questions/', views.db_questions, name="db_questions"),
+    path('job-with-db-questions/', views.job_with_db_questions, name="job_with_db_questions"),
+    path('doctor-<login>/db-diseases/', views.db_diseases, name="db_diseases"),
+    path('job-with-db-diseases/', views.job_with_db_diseases, name="job_with_db_diseases"),
+    path('doctor-<login>/postuplenie/db-anckets', views.db_anckets, name="db_anckets"),
+    path('doctor-<login>/profile/', views.profile, name="profile"),
+    path('job-with-db-anckets/', views.job_with_db_anckets, name="job_with_db_anckets"),
+    path('doctor-<login>/chose-method-work-patient/', views.chose_method_work_patient, name="chose_method_work_patient"),
+    path('doctor-<login>/job-with-db-epicriz/', views.job_with_db_epicriz, name="job_with_db_epicriz"),
+    path('doctor-<login>/job-with-db-diagnozes/', views.job_with_db_diagnozes, name="job_with_db_diagnozes"),
+
+
 
 ]
