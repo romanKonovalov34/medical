@@ -1,7 +1,7 @@
 ﻿{% extends 'core/main.html' %}
 
 
-{% block title %}База данных пациентов{% endblock %}
+{% block title %}Patient Database{% endblock %}
 
 
 
@@ -38,61 +38,61 @@
         <div class="row justify-content-center">
             <div class="col-7 text-center" style="background-color: white; box-shadow: 0 0 10px;">
                 <div class="mt-3 form-group row">
-                    <label for="" class="col-sm-2 col-form-label" style="text-align: left;">Номер карты</label>
+                    <label for="" class="col-sm-2 col-form-label" style="text-align: left;">Number card</label>
                     <div class="col-sm-10">
                         {{ form.number_card }}
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="" class="col-sm-2 col-form-label" style="text-align: left;">ФИО</label>
+                    <label for="" class="col-sm-2 col-form-label" style="text-align: left;">First name, last name and middle name</label>
                     <div class="col-sm-10">
                         {{ form.FIO }}
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="" class="col-sm-2 col-form-label" style="text-align: left">Дата рождения</label>
+                    <label for="" class="col-sm-2 col-form-label" style="text-align: left">Birthday</label>
                     <div class="col-sm-10">
                         {{ form.date_birth }}
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="" class="col-sm-2 col-form-label" style="text-align: left">Пол</label>
+                    <label for="" class="col-sm-2 col-form-label" style="text-align: left">Sex</label>
                     <div class="col-sm-10">
                         {{ form.sex }}
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="" class="col-sm-2 col-form-label" style="text-align: left">Национальность</label>
+                    <label for="" class="col-sm-2 col-form-label" style="text-align: left">Nationality</label>
                     <div class="col-sm-10">
                         {{ form.nationality }}
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="" class="col-sm-2 col-form-label" style="text-align: left">Образование</label>
+                    <label for="" class="col-sm-2 col-form-label" style="text-align: left">Education</label>
                     <div class="col-sm-10">
                         {{ form.education }}
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="" class="col-sm-2 col-form-label" style="text-align: left">Адрес</label>
+                    <label for="" class="col-sm-2 col-form-label" style="text-align: left">Address</label>
                     <div class="col-sm-10">
                         {{ form.address }}
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="" class="col-sm-2 col-form-label" style="text-align: left">Телефон</label>
+                    <label for="" class="col-sm-2 col-form-label" style="text-align: left">Phone</label>
                     <div class="col-sm-10">
                         {{ form.phone }}
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="" class="col-sm-2 col-form-label" style="text-align: left">Место работы</label>
+                    <label for="" class="col-sm-2 col-form-label" style="text-align: left">Place of work</label>
                     <div class="col-sm-10">
                         {{ form.job }}
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="" class="col-sm-2 col-form-label" style="text-align: left">Должность</label>
+                    <label for="" class="col-sm-2 col-form-label" style="text-align: left">Position</label>
                     <div class="col-sm-10">
                         {{ form.position }}
                     </div>
@@ -106,16 +106,16 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th scope="col">Номер карты</th>
-                                <th scope="col">ФИО</th>
-                                <th scope="col">Дата рождения</th>
-                                <th scope="col">Пол</th>
-                                <th scope="col">Национальность</th>
-                                <th scope="col">Образование</th>
-                                <th scope="col">Адрес</th>
-                                <th scope="col">Телефон</th>
-                                <th scope="col">Место работы</th>
-                                <th scope="col">Должность</th>
+                                <th scope="col">Number card</th>
+                                <th scope="col">First name, last name and middle name</th>
+                                <th scope="col">Birthday</th>
+                                <th scope="col">Sex</th>
+                                <th scope="col">Nationality</th>
+                                <th scope="col">Education</th>
+                                <th scope="col">Address</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Place of work</th>
+                                <th scope="col">Position</th>
         
                             </tr>
                         </thead>

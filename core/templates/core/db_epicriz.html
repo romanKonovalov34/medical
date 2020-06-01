@@ -1,7 +1,7 @@
 {% extends 'core/main.html' %}
 
 
-{% block title %}Добавить новый опрос{% endblock %}
+{% block title %}Add a survey{% endblock %}
 
 
 
@@ -17,50 +17,50 @@
             <div class="col-7 text-center" style="background-color: white; box-shadow: 0 0 10px;">
                 <div class="col-15 text-center" style="background-color: aquamarine; box-shadow: 0 0 10px;">
                     <span class="navbar-text" style="color: black">
-                        Номер карты: 
+                        Number card: 
                         {{ form.number_card }}
                     </span>
                 </div>
 
                 <div class="col-15 text-center" style="background-color: linen; box-shadow: 0 0 10px;">
                     <h3>
-                        Эпикризы
+                        Epicrisis
                     </h3>
                     <div class="mt-3 form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="text-align: left;">Код эпикриза</label>
+                        <label for="" class="col-sm-2 col-form-label" style="text-align: left;">Id epicris</label>
                         <div class="col-sm-10">
                             {{ form.number_epic }} 
-                            <button type="submit" class="mb-3 btn btn-primary" name="get_data_epic" style='margin-left: 0%;'>Получить данные по эпикризу</button>
+                            <button type="submit" class="mb-3 btn btn-primary" name="get_data_epic" style='margin-left: 0%;'>Get data about epicrisis</button>
                         </div>
                     </div>
                      <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="text-align: left">Инвалидность</label>
+                        <label for="" class="col-sm-2 col-form-label" style="text-align: left">Disability</label>
                         <div class="col-sm-10">
                             {{ form.invalid }}
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="text-align: left">Лечение</label>
+                        <label for="" class="col-sm-2 col-form-label" style="text-align: left">Treatment</label>
                         <div class="col-sm-10">
                             {{ form.lechenie }}
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="text-align: left">Дата госпитализации</label>
+                        <label for="" class="col-sm-2 col-form-label" style="text-align: left">Hospitalization date</label>
                         <div class="col-sm-10">
                             {{ form.date_gospit }}
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="text-align: left">Дата выписки</label>
+                        <label for="" class="col-sm-2 col-form-label" style="text-align: left">Hospital discharge date</label>
                         <div class="col-sm-10">
                             {{ form.date_vipisky }}
                         </div>
                     </div>
                     <div class="form-group row">
-                        <button type="submit" class="mb-3 btn btn-primary" name="add_btn" style='margin-left: 50%;'>Добавить эпикризу</button>
-                        <button type="submit" class="mb-3 btn btn-primary" name="change_btn" style='margin-left: 50%;'>Изменить эпикризу</button>
-                        <button type="submit" class="mb-3 btn btn-primary" name="delete_btn" style='margin-left: 50%;'>Удалить эпикризу</button>
+                        <button type="submit" class="mb-3 btn btn-primary" name="add_btn" style='margin-left: 50%;'>Add Epicrisis</button>
+                        <button type="submit" class="mb-3 btn btn-primary" name="change_btn" style='margin-left: 50%;'>Change Epicrisis</button>
+                        <button type="submit" class="mb-3 btn btn-primary" name="delete_btn" style='margin-left: 50%;'>Delete Epicrisis</button>
                     </div> 
                 </div>
             </div>
@@ -72,13 +72,13 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th scope="col">Код эпикриза</th>
-                                <th scope="col">ФИО пациента</th>
-                                <th scope="col">Кем направлен (врач)</th>
-                                <th scope="col">Инвалидность</th>
-                                <th scope="col">Лечение</th>
-                                <th scope="col">Госпитализирован</th>
-                                <th scope="col">Выписан</th>
+                                <th scope="col">Id Epicrisis</th>
+                                <th scope="col">Last, first middle name patient</th>
+                                <th scope="col">Who directed (doctor)</th>
+                                <th scope="col">Disability</th>
+                                <th scope="col">Treatment</th>
+                                <th scope="col">Hospitalized</th>
+                                <th scope="col">Discharged</th>
         
                             </tr>
                         </thead>
