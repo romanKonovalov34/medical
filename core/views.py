@@ -495,7 +495,7 @@ def job_with_db_diagnozes(request, login):
                 diagnoses = Diagnos.objects.select_related().all()
                 # diagnoses = Diagnos.objects.
             else:
-                db_diagnos_form.fields["number_card"].initial = 'ОШИБКА: такой карты нет'
+                db_diagnos_form.fields["number_card"].initial = 'ERROR: there are not such card'
             # answers = Answer.objects.all().order_by('-date')
             context = {
                 'login': login,
@@ -602,7 +602,7 @@ def job_with_db_epicriz(request, login):
                 db_epicriz_form.fields["number_card"].initial = request.POST.get("number_card")
                 epicrizis = Epicriz.objects.filter(patient__number_card=request.POST.get("number_card")).order_by('-date_gospit')
             else:
-                db_epicriz_form.fields["number_card"].initial = 'ОШИБКА: такой карты нет'
+                db_epicriz_form.fields["number_card"].initial = 'ERROR: there are not such card'
             # answers = Answer.objects.all().order_by('-date')
             context = {
                 'login': login,
@@ -737,7 +737,7 @@ def job_with_db_anckets(request):
                 # ankets.reverse()
 
             else:
-                db_anckets_form.fields["number_card"].initial = 'ОШИБКА: такой карты нет'
+                db_anckets_form.fields["number_card"].initial = 'ERROR: there are not such card'
 
             answers = Answer.objects.all().order_by('-date')
             context = {

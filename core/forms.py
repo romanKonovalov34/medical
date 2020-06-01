@@ -37,7 +37,7 @@ class RegisterForm(forms.Form):
 class DbPatientsForm(forms.Form):
     number_card = forms.CharField(required='', max_length=50, label="Номер карты")
     FIO = forms.CharField(required='', max_length=100, label="ФИО")
-    date_birth = forms.CharField(required='', label='Дата рождения', widget=forms.TextInput(attrs={'placeholder': 'Пожалуйста, используйте следующий формат: ДД.ММ.ГГГГ'}))
+    date_birth = forms.CharField(required='', label='Дата рождения', widget=forms.TextInput(attrs={'placeholder': 'Please use the following format: DD.MM.YYYY'}))
     sex = forms.CharField(required='', max_length=50, label="Пол")
     nationality = forms.CharField(required='', max_length=50, label="Национальность")
     education = forms.CharField(required='', max_length=100, label="Образование")
@@ -112,8 +112,8 @@ class DBEpicrizForm(forms.Form):
     number_epic = forms.CharField(required='')
     invalid = forms.BooleanField(required=False, widget=forms.CheckboxInput())
     lechenie = forms.CharField(required='', label='Лечение')
-    date_gospit = forms.CharField(required='', label='Дата госпитализации', widget=forms.TextInput(attrs={'placeholder': 'Пожалуйста, используйте следующий формат: ГГГГ-ММ-ДД'}))
-    date_vipisky = forms.CharField(required='', label='Дата выписки', widget=forms.TextInput(attrs={'placeholder': 'Пожалуйста, используйте следующий формат: ГГГГ-ММ-ДД'}))
+    date_gospit = forms.CharField(required='', label='Дата госпитализации', widget=forms.TextInput(attrs={'placeholder': 'Please use the following format: YYYY-MM-DD'}))
+    date_vipisky = forms.CharField(required='', label='Дата выписки', widget=forms.TextInput(attrs={'placeholder': 'Please use the following format: YYYY-MM-DD'}))
 
     number_card.widget.attrs.update({'class': 'form-control'})
     number_epic.widget.attrs.update({'class': 'form-control'})
