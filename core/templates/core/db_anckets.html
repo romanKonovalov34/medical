@@ -1,7 +1,7 @@
 {% extends 'core/main.html' %}
 
 
-{% block title %}Добавить новый опрос{% endblock %}
+{% block title %}Add a new survey{% endblock %}
 
 
 
@@ -17,47 +17,47 @@
             <div class="col-7 text-center" style="background-color: white; box-shadow: 0 0 10px;">
                 <div class="col-15 text-center" style="background-color: aquamarine; box-shadow: 0 0 10px;">
                     <span class="navbar-text" style="color: black">
-                        Номер карты: 
+                        Number card: 
                         {{ form.number_card }}
                     </span>
                     <h3>
-                        Добавить новый опрос (новую анкету)
+                        Add a new survey (new form)
                     </h3>
                     <div class="form-group row">
-                        <button type="submit" class="mb-3 btn btn-primary" name="add_opros" style='margin-left: 45%;'>Добавить</button>
+                        <button type="submit" class="mb-3 btn btn-primary" name="add_opros" style='margin-left: 45%;'>Add</button>
                     </div>
                 </div>
 
                 <div class="col-15 text-center" style="background-color: linen; box-shadow: 0 0 10px;">
                     <h3>
-                        Добавить ответ
+                        Add answer
                     </h3>
                     <div class="mt-3 form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="text-align: left;">Номер анкеты с которой работаем</label>
+                        <label for="" class="col-sm-2 col-form-label" style="text-align: left;">Id form</label>
                         <div class="col-sm-10">
                             {{ form.number_ancket }}
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="text-align: left">Вопрос</label>
+                        <label for="" class="col-sm-2 col-form-label" style="text-align: left">Question</label>
                         <div class="col-sm-10">
                             {{ form.question }}
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="text-align: left">Ответ</label>
+                        <label for="" class="col-sm-2 col-form-label" style="text-align: left">Answer</label>
                         <div class="col-sm-10">
                             {{ form.answer }}
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="text-align: left">Уверенность</label>
+                        <label for="" class="col-sm-2 col-form-label" style="text-align: left">Conviction</label>
                         <div class="col-sm-10">
                             {{ form.conviction }}
                         </div>
                     </div>
                     <div class="form-group row">
-                        <button type="submit" class="mb-3 btn btn-primary" name="add_answer" style='margin-left: 45%;'>Добавить</button>
+                        <button type="submit" class="mb-3 btn btn-primary" name="add_answer" style='margin-left: 45%;'>Add</button>
                     </div>
                 </div>
             </div>
@@ -69,13 +69,13 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th scope="col">Карта №</th>
-                                <th scope="col">ФИО пациента</th>
-                                <th scope="col">Код анкеты</th>
-                                <th scope="col">Дата создания анкеты</th>
-                                <th scope="col">Вопрос</th>
-                                <th scope="col">Ответ</th>
-                                <th scope="col">Уверенность %</th>
+                                <th scope="col">Number card</th>
+                                <th scope="col">First last and middle name of patient</th>
+                                <th scope="col">Id form</th>
+                                <th scope="col">Date create form</th>
+                                <th scope="col">Question</th>
+                                <th scope="col">Answer</th>
+                                <th scope="col">Conviction %</th>
         
                             </tr>
                         </thead>

@@ -1,7 +1,7 @@
 {% extends 'core/base_core.html' %}
 
 
-{% block title %}Главная{% endblock %}
+{% block title %}Main{% endblock %}
 
 
 {% block navbar %}
@@ -13,7 +13,7 @@
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <div class="collapse navbar-collapse" id="navbarText">
                         <ul class="ml-4 navbar-nav mr-auto" style="font-size: 1.5em">
-                            Модуль медицинской диагностики
+                            Medical Diagnostics Module
                         </ul>
                         <span class="navbar-text" style="color: black">
                             {{ login }}
@@ -29,8 +29,8 @@
                             
 
                                 <div class="dropdown-menu dropdown-menu-tip-nw dropdown-menu-right" aria-labelledby="dropdownMenuButton" style="box-shadow: 0 0 10px">
-                                    <a type="button" class="dropdown-item" href="{% url 'profile' login=login%}">Профиль</a>
-                                    <a class="dropdown-item" href="{% url 'base_core' %}">Выйти</a>
+                                    <a type="button" class="dropdown-item" href="{% url 'profile' login=login%}">Profile</a>
+                                    <a class="dropdown-item" href="{% url 'base_core' %}">Log out</a>
                                 </div>
                             
                         </div>
@@ -49,11 +49,11 @@
     <div class="row justify-content-center">
         <div class="col-3 text-center" style="background-color: white; box-shadow: 0 0 10px; position: fixed; top: 25%">
             <p class="mt-3" style="font-size: 1.1em">
-                Справочник
+                Directory
             </p>
             <div class="btn-group-vertical">
-                <a type="button" class="mb-3 btn btn-danger" href="{% url 'db_diseases' login=login%}">Диагнозы(болезни)</a>
-                <a type="button" class="mb-3 btn btn-danger" href="{% url 'db_questions' login=login%}">Вопросы</a>
+                <a type="button" class="mb-3 btn btn-danger" href="{% url 'db_diseases' login=login%}">Diagnoses (diseases)</a>
+                <a type="button" class="mb-3 btn btn-danger" href="{% url 'db_questions' login=login%}">Questions</a>
             </div>
         </div>
     </div>
@@ -63,12 +63,12 @@
     <div class="row justify-content-center">
         <div class="col-3 text-center" style="background-color: white; box-shadow: 0 0 10px; position: fixed; top: 25%">
             <p class="mt-3" style="font-size: 1.1em">
-                Работа с пациентом
+                Work with patient
             </p>
             <div class="btn-group-vertical">
-                <a type="button" class="mt-1 mb-3 btn btn-danger" href="{% url 'db_patients' login=login %}">База данных пациентов</a>
+                <a type="button" class="mt-1 mb-3 btn btn-danger" href="{% url 'db_patients' login=login %}">Patient Database</a>
                 <!-- <button type="button" class="mb-3 btn btn-danger">Эпикризы</button> -->
-                <a type="button" class="mb-3 btn btn-danger" href="{% url 'postuplenie' login=login %}">Работа с поступившим</a>
+                <a type="button" class="mb-3 btn btn-danger" href="{% url 'postuplenie' login=login %}">Work with incoming patients</a>
                 <!-- <button type="button" class="mb-4 btn btn-danger">Диагноз</button> -->
             </div>
         </div>
@@ -79,12 +79,12 @@
     <div class="row justify-content-center">
         <div class="col-3 text-center" style="background-color: white; box-shadow: 0 0 10px; position: fixed; top: 25%">
             <p class="mt-3" style="font-size: 1.1em">
-                Настройка правил
+                Rule setting
             </p>
             <div class="btn-group-vertical">
-                <button type="button" class="mt-1 mb-3 btn btn-danger">Диагнозы</button>
-                <button type="button" class="mb-3 btn btn-danger">Симптомы</button>
-                <button type="button" class="mb-4 btn btn-danger">Правила</button>
+                <button type="button" class="mt-1 mb-3 btn btn-danger">Diagnoses</button>
+                <button type="button" class="mb-3 btn btn-danger">Diagnoses</button>
+                <button type="button" class="mb-4 btn btn-danger">Rules</button>
             </div>
         </div>
     </div>

@@ -1,7 +1,7 @@
 {% extends 'core/main.html' %}
 
 
-{% block title %}Добавить новый опрос{% endblock %}
+{% block title %}Add a new survey{% endblock %}
 
 
 
@@ -17,44 +17,44 @@
             <div class="col-7 text-center" style="background-color: white; box-shadow: 0 0 10px;">
                 <div class="col-15 text-center" style="background-color: aquamarine; box-shadow: 0 0 10px;">
                     <span class="navbar-text" style="color: black">
-                        Номер карты: 
+                        Number card: 
                         {{ form.number_card }}
                     </span>
                 </div>
 
                 <div class="col-15 text-center" style="background-color: linen; box-shadow: 0 0 10px;">
                     <h3>
-                        Диагнозы пациента
+                        Patient diagnoses
                     </h3>
                     <div class="mt-3 form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="text-align: left;">Код диагноза</label>
+                        <label for="" class="col-sm-2 col-form-label" style="text-align: left;">Id diagnose</label>
                         <div class="col-sm-10">
                             {{ form.number_diag }} 
                             <!-- <button type="submit" class="mb-3 btn btn-primary" name="get_data_diag" style='margin-left: 0%;'>Получить данные по диагнозу</button> -->
                         </div>
                     </div>
                      <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="text-align: left">Диагноз(болезнь)</label>
+                        <label for="" class="col-sm-2 col-form-label" style="text-align: left">Diagnosis (disease)</label>
                         <div class="col-sm-10">
                             {{ form.disease }}
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="text-align: left">Сопоствующий диагноз</label>
+                        <label for="" class="col-sm-2 col-form-label" style="text-align: left">Concomitant diagnosis</label>
                         <div class="col-sm-10">
                             {{ form.note }}
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label" style="text-align: left">Эпикриз</label>
+                        <label for="" class="col-sm-2 col-form-label" style="text-align: left">Epicrisis</label>
                         <div class="col-sm-10">
                             {{ form.epicriz }}
                         </div>
                     </div>
                     <div class="form-group row">
-                        <button type="submit" class="mb-3 btn btn-primary" name="add_btn" style='margin-left: 50%;'>Добавить диагноз</button>
-                        <button type="submit" class="mb-3 btn btn-primary" name="change_btn" style='margin-left: 50%;'>Изменить диагноз</button>
-                        <button type="submit" class="mb-3 btn btn-primary" name="delete_btn" style='margin-left: 50%;'>Удалить диагноз</button>
+                        <button type="submit" class="mb-3 btn btn-primary" name="add_btn" style='margin-left: 50%;'>Add diagnosis</button>
+                        <button type="submit" class="mb-3 btn btn-primary" name="change_btn" style='margin-left: 50%;'>Change diagnosis</button>
+                        <button type="submit" class="mb-3 btn btn-primary" name="delete_btn" style='margin-left: 50%;'>Delete diagnosis</button>
                     </div> 
                 </div>
             </div>
@@ -66,10 +66,10 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th scope="col">Код диагноза</th>
-                                <th scope="col">Эпикриз</th>
-                                <th scope="col">Диагноз</th>
-                                <th scope="col">Диагноз сопуствующий</th>
+                                <th scope="col">Id Diagnosis </th>
+                                <th scope="col">Epicrisis</th>
+                                <th scope="col">Diagnosis</th>
+                                <th scope="col">Concomitant diagnosis</th>
         
                             </tr>
                         </thead>

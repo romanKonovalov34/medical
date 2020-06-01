@@ -13,9 +13,9 @@ from .models import Disease
 from .models import Epicriz
 
 class SigninForm(forms.Form):
-    login = forms.CharField(max_length=50, label="Логин")
-    password = forms.CharField(max_length=50, label="Пароль", widget=forms.PasswordInput())
-    isAdmin = forms.BooleanField(required=False, label='Я администратор')
+    login = forms.CharField(max_length=50, label="login")
+    password = forms.CharField(max_length=50, label="password", widget=forms.PasswordInput())
+    isAdmin = forms.BooleanField(required=False, label='i am admin')
 
     login.widget.attrs.update({'class': 'form-control'})
     password.widget.attrs.update({'class': 'form-control'})
@@ -24,9 +24,9 @@ class SigninForm(forms.Form):
 
 
 class RegisterForm(forms.Form):
-    login = forms.CharField(max_length=50, label="Логин")
-    password = forms.CharField(max_length=50, label="Пароль", widget=forms.PasswordInput())
-    rePassword = forms.CharField(max_length=50, label="Повторите пароль", widget=forms.PasswordInput())
+    login = forms.CharField(max_length=50, label="login")
+    password = forms.CharField(max_length=50, label="password", widget=forms.PasswordInput())
+    rePassword = forms.CharField(max_length=50, label="repeat password", widget=forms.PasswordInput())
     
     login.widget.attrs.update({'class': 'form-control'})
     password.widget.attrs.update({'class': 'form-control'})
@@ -35,16 +35,16 @@ class RegisterForm(forms.Form):
     
 
 class DbPatientsForm(forms.Form):
-    number_card = forms.CharField(required='', max_length=50, label="Номер карты")
-    FIO = forms.CharField(required='', max_length=100, label="ФИО")
-    date_birth = forms.CharField(required='', label='Дата рождения', widget=forms.TextInput(attrs={'placeholder': 'Пожалуйста, используйте следующий формат: ДД.ММ.ГГГГ'}))
-    sex = forms.CharField(required='', max_length=50, label="Пол")
-    nationality = forms.CharField(required='', max_length=50, label="Национальность")
-    education = forms.CharField(required='', max_length=100, label="Образование")
-    address = forms.CharField(required='', max_length=100, label="Адрес")
-    phone = forms.CharField(required='', max_length=50, label="Телефон")
-    job = forms.CharField(required='', max_length=100, label="Место работы")
-    position = forms.CharField(required='', max_length=100, label="Должность")
+    number_card = forms.CharField(required='', max_length=50, label="number card")
+    FIO = forms.CharField(required='', max_length=100, label="First last middle name")
+    date_birth = forms.CharField(required='', label='birthday', widget=forms.TextInput(attrs={'placeholder': 'Please use the following format: DD.MM.YYYY'}))
+    sex = forms.CharField(required='', max_length=50, label="sex")
+    nationality = forms.CharField(required='', max_length=50, label="nationality")
+    education = forms.CharField(required='', max_length=100, label="education")
+    address = forms.CharField(required='', max_length=100, label="adress")
+    phone = forms.CharField(required='', max_length=50, label="phons")
+    job = forms.CharField(required='', max_length=100, label="where work")
+    position = forms.CharField(required='', max_length=100, label="position")
 
     number_card.widget.attrs.update({'class': 'form-control'})
     FIO.widget.attrs.update({'class': 'form-control'})
@@ -59,16 +59,16 @@ class DbPatientsForm(forms.Form):
 
     
 class DbQuestionsForm(forms.Form):
-    question_id = forms.IntegerField(required='', label="Код")
-    question = forms.CharField(required='', max_length=100, label="ФИО")
+    question_id = forms.IntegerField(required='', label="id")
+    question = forms.CharField(required='', max_length=100, label="First last middle name")
 
     question_id.widget.attrs.update({'class': 'form-control'})
     question.widget.attrs.update({'class': 'form-control'})
 
 class DbDiseasesForm(forms.Form):
-    diseases_id = forms.IntegerField(required='', label="Код")
-    name = forms.CharField(required='', max_length=100, label="название")
-    note = forms.CharField(required='', label="Пояснение")
+    diseases_id = forms.IntegerField(required='', label="id")
+    name = forms.CharField(required='', max_length=100, label="name")
+    note = forms.CharField(required='', label="note")
 
     diseases_id.widget.attrs.update({'class': 'form-control'})
     name.widget.attrs.update({'class': 'form-control'})
@@ -77,10 +77,10 @@ class DbDiseasesForm(forms.Form):
 # анкета
 class DBAncketsForm(forms.Form):
     number_card = forms.CharField(widget=forms.TextInput(attrs={'readonly':'readonly'}))
-    number_ancket = forms.CharField(required='', label="Номер анкеты")
+    number_ancket = forms.CharField(required='', label="card")
     question = forms.ModelChoiceField (queryset = Question.objects.all(),to_field_name="question")
-    answer = forms.CharField(required='', label="Ответ")
-    conviction = forms.IntegerField(required='', label="Уверенность")
+    answer = forms.CharField(required='', label="answer")
+    conviction = forms.IntegerField(required='', label="conviction")
 
     number_card.widget.attrs.update({'class': 'form-control'})
     number_ancket.widget.attrs.update({'class': 'form-control'})
@@ -89,17 +89,17 @@ class DBAncketsForm(forms.Form):
     conviction.widget.attrs.update({'class': 'form-control'})
     
 class PostuplenieForm(forms.Form):
-    number_card = forms.IntegerField(label="Номер карты")
+    number_card = forms.IntegerField(label="number card")
 
     number_card.widget.attrs.update({'class': 'form-control'})
 
 
 class ProfileForm(forms.Form):
-    FIO = forms.CharField(required='', label="ФИО врача")
-    login = forms.CharField(required='', label="Логин")
-    postion = forms.CharField(required='', label="Позиция")
-    department = forms.CharField(required='', label="Отделение")
-    password = forms.CharField(label="Пароль", widget=forms.PasswordInput())
+    FIO = forms.CharField(required='', label="First last middle name doctor")
+    login = forms.CharField(required='', label="login")
+    postion = forms.CharField(required='', label="position")
+    department = forms.CharField(required='', label="department")
+    password = forms.CharField(label="login", widget=forms.PasswordInput())
 
     FIO.widget.attrs.update({'class': 'form-control'})
     login.widget.attrs.update({'class': 'form-control'})
@@ -111,9 +111,9 @@ class DBEpicrizForm(forms.Form):
     number_card = forms.CharField(widget=forms.TextInput(attrs={'readonly':'readonly'}))
     number_epic = forms.CharField(required='')
     invalid = forms.BooleanField(required=False, widget=forms.CheckboxInput())
-    lechenie = forms.CharField(required='', label='Лечение')
-    date_gospit = forms.CharField(required='', label='Дата госпитализации', widget=forms.TextInput(attrs={'placeholder': 'Пожалуйста, используйте следующий формат: ГГГГ-ММ-ДД'}))
-    date_vipisky = forms.CharField(required='', label='Дата выписки', widget=forms.TextInput(attrs={'placeholder': 'Пожалуйста, используйте следующий формат: ГГГГ-ММ-ДД'}))
+    lechenie = forms.CharField(required='', label='lechenie')
+    date_gospit = forms.CharField(required='', label='date hospital', widget=forms.TextInput(attrs={'placeholder': 'Please use the following format: YYYY-MM-DD'}))
+    date_vipisky = forms.CharField(required='', label='date out', widget=forms.TextInput(attrs={'placeholder': 'Please use the following format: YYYY-MM-DD'}))
 
     number_card.widget.attrs.update({'class': 'form-control'})
     number_epic.widget.attrs.update({'class': 'form-control'})
@@ -123,11 +123,11 @@ class DBEpicrizForm(forms.Form):
     date_vipisky.widget.attrs.update({'class': 'form-control'})
 
 class DbDiagnosesForm(forms.Form):
-    number_card = forms.CharField(widget=forms.TextInput(attrs={'readonly':'readonly'}), label="Номер карты")
-    number_diag = forms.CharField(required='', label="Код диагноза")
-    note = forms.CharField(required='', max_length=100, label="Сопоствующий диагноз")
-    disease = forms.ModelChoiceField (queryset = Disease.objects.all(), to_field_name="name", label="болезнь(диагноз)")
-    epicriz = forms.ModelChoiceField (queryset = Epicriz.objects.all(), to_field_name="lechenie", label="Эпикриз")
+    number_card = forms.CharField(widget=forms.TextInput(attrs={'readonly':'readonly'}), label="card")
+    number_diag = forms.CharField(required='', label="id diagnoses")
+    note = forms.CharField(required='', max_length=100, label="diagnoses note")
+    disease = forms.ModelChoiceField (queryset = Disease.objects.all(), to_field_name="name", label="disease")
+    epicriz = forms.ModelChoiceField (queryset = Epicriz.objects.all(), to_field_name="lechenie", label="epicris")
 
     number_card.widget.attrs.update({'class': 'form-control'})
     number_diag.widget.attrs.update({'class': 'form-control'})

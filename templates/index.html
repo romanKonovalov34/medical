@@ -13,7 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-    <title>{% block title %}Вход{% endblock %}</title>
+    <title>{% block title %}Log in{% endblock %}</title>
 </head>
 <body style="background-color: rgb(255, 246, 235)">
 
@@ -43,13 +43,13 @@
                 <div class="col-sm-12">
                     <div class="row justify-content-center">
                         <div class="col-3 text-center" style="background-color: white; box-shadow: 0 0 10px; position: fixed; top: 25%">
-                            <h2 class="signinText" style="text-align: center;">Вход</h2>
+                            <h2 class="signinText" style="text-align: center;">Sign in</h2>
                             <div class="form-group" style="text-align: left;">
-                                <label for="login">Логин:</label>
+                                <label for="login">Login:</label>
                                 {{ form.login }}
                             </div>
                             <div class="form-group" style="text-align: left;">
-                                <label class='' for="exampleInputPassword1" style="text-align: left;">Пароль:</label>
+                                <label class='' for="exampleInputPassword1" style="text-align: left;">Password:</label>
                                 {{ form.password }}
                             </div>
                             <div class="">
@@ -60,10 +60,10 @@
                                 </label> -->
                             </div>
                             <div class="button" style="text-align: center;">
-                                <button type="submit" class="mb-3 btn btn-primary">Войти</button>
+                                <button type="submit" class="mb-3 btn btn-primary">Sign in</button>
                             </div>
                             <div class="a mb-2" style="text-align: center;">
-                                <a class="" href="{% url 'register' %}">Регистрация</a>
+                                <a class="" href="{% url 'register' %}">Sign up</a>
                             </div>
                         </div>
                     </div>
