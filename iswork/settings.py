@@ -81,8 +81,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',#postgresql_psycopg2',
         'NAME': 'postgres',
         'USER': 'postgres',
-        'PASSWORD': '123', #ОЧЕНЬ ВАЖНО, У РОМЫ пароль 123 , У Вовы admin
-        'HOST': 'localhost',#'127.0.0.1',
+        'PASSWORD': '123',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
