@@ -7,35 +7,35 @@ from django.db import models
 
 
 class User(models.Model):
-    login = models.CharField(max_length=200, verbose_name='Логин')
-    password = models.CharField(max_length = 50, verbose_name='Пароль')
-    isAdmin = models.BooleanField(verbose_name='Я администратор') # Не нужно, но пусть будет чтобы ошибок не было.
-    FIO = models.CharField(max_length = 50, verbose_name='ФИО', default="")
-    Postion = models.CharField(max_length = 50, verbose_name='Позиция', default="")
-    Department = models.CharField(max_length = 50, verbose_name='Отделение', default="")
+    login = models.CharField(max_length=200, verbose_name='login')
+    password = models.CharField(max_length = 50, verbose_name='password')
+    isAdmin = models.BooleanField(verbose_name='is admin') # Не нужно, но пусть будет чтобы ошибок не было.
+    FIO = models.CharField(max_length = 50, verbose_name='last first middle name', default="")
+    Postion = models.CharField(max_length = 50, verbose_name='position', default="")
+    Department = models.CharField(max_length = 50, verbose_name='department', default="")
 
     def __str__(self):
         return self.login
 
 
     class Meta():
-        verbose_name = 'пользователя'
-        verbose_name_plural='пользователи'
+        verbose_name = 'user'
+        verbose_name_plural='users'
 
 
 
 
 class Patient(models.Model):
-    number_card = models.IntegerField(verbose_name="Номер карты")
-    FIO = models.CharField(max_length=100, verbose_name="ФИО")
-    date_birth = models.CharField(max_length=100, verbose_name="Дата рождения")
-    sex = models.CharField(max_length=50, verbose_name="Пол")
-    nationality = models.CharField(max_length=50, verbose_name="Национальность")
-    education = models.CharField(max_length=100, verbose_name="Образование")
-    address = models.CharField(max_length=100, verbose_name="Адрес")
-    phone = models.CharField(max_length=50, verbose_name="Телефон")
-    job = models.CharField(max_length=100, verbose_name="Место работы")
-    position = models.CharField(max_length=100, verbose_name="Должность")
+    number_card = models.IntegerField(verbose_name="card")
+    FIO = models.CharField(max_length=100, verbose_name="last first middle name")
+    date_birth = models.CharField(max_length=100, verbose_name="birthday")
+    sex = models.CharField(max_length=50, verbose_name="sex")
+    nationality = models.CharField(max_length=50, verbose_name="nationality")
+    education = models.CharField(max_length=100, verbose_name="education")
+    address = models.CharField(max_length=100, verbose_name="adress")
+    phone = models.CharField(max_length=50, verbose_name="phone")
+    job = models.CharField(max_length=100, verbose_name="place work")
+    position = models.CharField(max_length=100, verbose_name="position")
 
 
     def __str__(self):
@@ -43,33 +43,33 @@ class Patient(models.Model):
 
 
     class Meta():
-        verbose_name = 'пациента'
-        verbose_name_plural='пациенты'
+        verbose_name = 'patient'
+        verbose_name_plural='patients'
 
 # Сущность анкета пациента
 class Ancket(models.Model):
-    date = models.CharField(max_length=100, verbose_name="Дата анкеты")
-    patient = models.ForeignKey(Patient, on_delete = models.CASCADE, verbose_name="Пациент")
+    date = models.CharField(max_length=100, verbose_name="date form")
+    patient = models.ForeignKey(Patient, on_delete = models.CASCADE, verbose_name="patient")
 
     def __str__(self):
         return self.date
 
 
     class Meta():
-        verbose_name = 'анкета'
-        verbose_name_plural='анкеты'
+        verbose_name = 'form'
+        verbose_name_plural='forms'
 
 # Вопросы
 class Question(models.Model):
-    question = models.CharField(max_length=100, verbose_name="Вопрос")
+    question = models.CharField(max_length=100, verbose_name="question")
 
     def __str__(self):
         return self.question
 
 
     class Meta():
-        verbose_name = 'вопрос'
-        verbose_name_plural='вопросы'
+        verbose_name = 'question'
+        verbose_name_plural='qestions'
 
 # ответы
 class Answer(models.Model):
@@ -84,9 +84,7 @@ class Answer(models.Model):
         return self.note
 
 
-    class Meta():
-        verbose_name = 'ответ'
-        verbose_name_plural='ответы'
+
 
 # Болезни(диагнозы)
 class Disease(models.Model):
@@ -97,9 +95,6 @@ class Disease(models.Model):
         return self.name
 
 
-    class Meta():
-        verbose_name = 'болезнь'
-        verbose_name_plural='болезни'
 
 # Эпикризы
 class Epicriz(models.Model):
@@ -114,9 +109,6 @@ class Epicriz(models.Model):
         return self.lechenie
 
 
-    class Meta():
-        verbose_name = 'эпикриз'
-        verbose_name_plural='эпикризы'
 
 
 # Диагнозы
@@ -129,7 +121,3 @@ class Diagnos(models.Model):
     def __str__(self):
         return self.note
 
-
-    class Meta():
-        verbose_name = 'диагноз'
-        verbose_name_plural='диагнозы'
